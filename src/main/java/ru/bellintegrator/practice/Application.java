@@ -9,18 +9,15 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import ru.bellintegrator.practice.myApp.countries.controller.CountriesControllerImpl;
-import ru.bellintegrator.practice.myApp.docs.controller.DocsControllerImpl;
-import ru.bellintegrator.practice.controller.impl.DummyControllerImpl;
-import ru.bellintegrator.practice.myApp.countries.dao.CountriesDAOImpl;
-import ru.bellintegrator.practice.myApp.docs.dao.DocsDAOImpl;
-import ru.bellintegrator.practice.dao.impl.PersonDAOImpl;
-import ru.bellintegrator.practice.myApp.countries.service.CountriesServiceImpl;
-import ru.bellintegrator.practice.myApp.docs.service.DocsServiceImpl;
-import ru.bellintegrator.practice.myApp.organization.controller.OrganizationControllerImpl;
-import ru.bellintegrator.practice.myApp.organization.dao.OrganizationDAOImpl;
-import ru.bellintegrator.practice.myApp.organization.service.OrganizationServiceImpl;
-import ru.bellintegrator.practice.service.impl.DummyServiceImpl;
+import ru.bellintegrator.practice.countries.controller.CountriesControllerImpl;
+import ru.bellintegrator.practice.documents.controller.DocumentsControllerImpl;
+import ru.bellintegrator.practice.countries.dao.CountryDAOImpl;
+import ru.bellintegrator.practice.documents.dao.DocumentsDAOImpl;
+import ru.bellintegrator.practice.countries.service.CountriesServiceImpl;
+import ru.bellintegrator.practice.documents.service.DocumentsServiceImpl;
+import ru.bellintegrator.practice.organization.controller.OrganizationControllerImpl;
+import ru.bellintegrator.practice.organization.dao.OrganizationDAOImpl;
+import ru.bellintegrator.practice.organization.service.OrganizationServiceImpl;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
@@ -35,9 +32,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @ImportResource("spring_mvc_config.xml")
 @SpringBootApplication
 @ComponentScan(basePackageClasses = {
-        DummyControllerImpl.class, DummyServiceImpl.class, PersonDAOImpl.class,
-        DocsControllerImpl.class, DocsServiceImpl.class, DocsDAOImpl.class,
-        CountriesControllerImpl.class, CountriesServiceImpl.class, CountriesDAOImpl.class,
+        DocumentsControllerImpl.class, DocumentsServiceImpl.class, DocumentsDAOImpl.class,
+        CountriesControllerImpl.class, CountriesServiceImpl.class, CountryDAOImpl.class,
         OrganizationControllerImpl.class, OrganizationServiceImpl.class, OrganizationDAOImpl.class
 })
 public class Application {

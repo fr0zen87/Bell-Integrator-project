@@ -1,10 +1,4 @@
-INSERT INTO House (id, version, address) VALUES (1, 0, 'ул.Цюрупы, 16');
-
-INSERT INTO Person (version, first_name, age, house_id) VALUES (0, 'Пётр', 20, 1);
-
-INSERT INTO Person (version, first_name, age, house_id) VALUES (0, 'John', 25, 1);
-
-INSERT INTO Docs (version, name, code) VALUES
+INSERT INTO doc_type (version, name, code) VALUES
 (0, 'Свидетельство о рождении', '03'),
 (0, 'Военный билет', '07'),
 (0, 'Временное удостоверение, выданное взамен военного билета', '08'),
@@ -19,7 +13,7 @@ INSERT INTO Docs (version, name, code) VALUES
 (0, 'Удостоверение личности военнослужащего Российской Федерации', '24'),
 (0, 'Иные документы', '91');
 
-INSERT INTO Countries (version, name, code) VALUES
+INSERT INTO country (version, name, code) VALUES
 (0, 'Российская Федерация', '643'),
 (0, 'Австрия', '040'),
 (0, 'Германия', '276'),
@@ -30,6 +24,9 @@ INSERT INTO Organization (id, version, name, full_name, inn, kpp, address, phone
 (0, 0, 'MTS org', 'MTS ogranization', '1234567890', '987654321', 'Russia, Moscow', '+79851231212', FALSE),
 (1, 0, 'TestOrg', 'TestOrgFullName', '111', '555', 'Address', '+1111111', TRUE),
 (2, 0, 'TestOrg', 'TestOrgFullName', '111', '666', 'Add', '+2222222', TRUE);
+
+INSERT INTO Organization (id, version, name, full_name, inn, kpp, address) VALUES
+(3, 0, 'Test', 'Test', '111', '666', 'Add');
 
 INSERT INTO Office (version, name, address, phone, is_active) VALUES
 (0, 'MTS office', 'Russia, Moscow, Random str.', '+75554443322', 1);
