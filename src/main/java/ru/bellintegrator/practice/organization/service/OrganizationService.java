@@ -13,9 +13,9 @@ public interface OrganizationService {
 
     Organization loadById(Long id);
 
-    String update(Organization organization);
+    Organization update(Organization organization);
 
-    String save(Organization organization);
+    void save(Organization organization);
 
-    String delete(Long id);
+    void delete(Long id);
 }

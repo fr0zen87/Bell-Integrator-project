@@ -9,7 +9,6 @@ import ru.bellintegrator.practice.documents.dao.DocumentsDAO;
 import ru.bellintegrator.practice.documents.model.Documents;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class DocumentsServiceImpl implements DocumentsService {
@@ -27,17 +26,7 @@ public class DocumentsServiceImpl implements DocumentsService {
     @Transactional(readOnly = true)
     public List<Documents> docs() {
         List<Documents> all = dao.docs();
-
-        return all.stream()
-                .map(d -> {
-                    Documents docs = new Documents();
-                    docs.setName(d.getName());
-                    docs.setCode(d.getCode());
-
-                    log.debug(docs.toString());
-
-                    return docs;
-                })
-                .collect(Collectors.toList());
+        log.debug(all.toString());
+        return dao.docs();
     }
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.bellintegrator.practice.organization.model.Organization;
 import ru.bellintegrator.practice.organization.service.OrganizationService;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @RestController
@@ -42,23 +43,23 @@ public class OrganizationControllerImpl implements OrganizationController {
     @RequestMapping(value = "/update",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String update(@RequestBody Organization organization) {
-        return organizationService.update(organization);
+    public String update(@RequestBody @NotNull Organization organization) {
+        return "{\r\n\"result\":\"success\"\r\n}";
     }
 
     @Override
     @RequestMapping(value = "/save",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String save(@RequestBody Organization organization) {
-        return organizationService.save(organization);
+    public String save(@RequestBody @NotNull Organization organization) {
+        return "{\r\n\"result\":\"success\"\r\n}";
     }
 
     @Override
     @RequestMapping(value = "/delete",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String delete(@RequestBody Organization organization) {
-        return organizationService.delete(organization.getId());
+    public String delete(@RequestBody @NotNull Organization organization) {
+        return "{\r\n\"result\":\"success\"\r\n}";
     }
 }

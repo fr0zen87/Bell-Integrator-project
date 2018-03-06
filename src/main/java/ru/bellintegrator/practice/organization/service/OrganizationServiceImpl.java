@@ -36,34 +36,26 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional(readOnly = true)
     public Organization loadById(Long id) {
-        Organization organization = dao.loadById(id);
-        if (organization != null) {
-            log.debug(organization.toString());
-        }
-        return organization;
+        return dao.loadById(id);
     }
 
     @Override
     @Transactional
-    public String update(Organization organization) {
-        String result = dao.update(organization);
-        log.debug(result);
+    public Organization update(Organization organization) {
+        Organization result = dao.update(organization);
+        log.debug(result.toString());
         return result;
     }
 
     @Override
     @Transactional
-    public String save(Organization organization) {
-        String result = dao.save(organization);
-        log.debug(result);
-        return result;
+    public void save(Organization organization) {
+        dao.save(organization);
     }
 
     @Override
     @Transactional
-    public String delete(Long id) {
-        String result = dao.delete(id);
-        log.debug(result);
-        return result;
+    public void delete(Long id) {
+        dao.delete(id);
     }
 }

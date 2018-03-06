@@ -46,7 +46,7 @@ public class OrganizationDAOImpl implements OrganizationDAO {
     }
 
     @Override
-    public String update(Organization organization) {
+    public Organization update(Organization organization) {
         Organization org = em.find(Organization.class, organization.getId());
         if (org == null) {
             throw new NullPointerException(String.format("Organization with id=%s not found", organization.getId()));
@@ -58,23 +58,20 @@ public class OrganizationDAOImpl implements OrganizationDAO {
         org.setAddress(organization.getAddress());
         org.setPhone(organization.getPhone());
         org.setActive(organization.isActive());
-        em.merge(org);
-        return "{\r\n\"result\":\"success\"\r\n}";
+        return em.merge(org);
     }
 
     @Override
-    public String save(Organization organization) {
+    public void save(Organization organization) {
         em.persist(organization);
-        return "{\r\n\"result\":\"success\"\r\n}";
     }
 
     @Override
-    public String delete(Long id) {
+    public void delete(Long id) {
         Organization organization = em.find(Organization.class, id);
         if (organization == null) {
             throw new NullPointerException(String.format("Organization with id=%s not found", id));
         }
         em.remove(loadById(id));
-        return "{\r\n\"result\":\"success\"\r\n}";
     }
 }

@@ -10,7 +10,6 @@ import ru.bellintegrator.practice.documents.service.DocumentsServiceImpl;
 import ru.bellintegrator.practice.countries.model.Countries;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CountriesServiceImpl implements CountriesService {
@@ -28,17 +27,7 @@ public class CountriesServiceImpl implements CountriesService {
     @Transactional(readOnly = true)
     public List<Countries> countries() {
         List<Countries> all = dao.countries();
-
-        return all.stream()
-                .map(c -> {
-                    Countries countries = new Countries();
-                    countries.setName(c.getName());
-                    countries.setCode(c.getCode());
-
-                    log.debug(countries.toString());
-
-                    return countries;
-                })
-                .collect(Collectors.toList());
+        log.debug(all.toString());
+        return dao.countries();
     }
 }
