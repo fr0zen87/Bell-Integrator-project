@@ -28,7 +28,7 @@ public class OrganizationControllerImpl implements OrganizationController {
     @RequestMapping(value = "/list",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             method = RequestMethod.POST)
-    public List<Organization> list(@RequestBody Organization organization) {
+    public List<Organization> list(@RequestBody @NotNull Organization organization) {
         return organizationService.list(organization.getName(),
                 organization.getInn(), organization.isActive());
     }
@@ -44,6 +44,7 @@ public class OrganizationControllerImpl implements OrganizationController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public String update(@RequestBody @NotNull Organization organization) {
+        organizationService.update(organization);
         return "{\r\n\"result\":\"success\"\r\n}";
     }
 
@@ -52,6 +53,7 @@ public class OrganizationControllerImpl implements OrganizationController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public String save(@RequestBody @NotNull Organization organization) {
+        organizationService.save(organization);
         return "{\r\n\"result\":\"success\"\r\n}";
     }
 
@@ -60,6 +62,7 @@ public class OrganizationControllerImpl implements OrganizationController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public String delete(@RequestBody @NotNull Organization organization) {
+        organizationService.delete(organization.getId());
         return "{\r\n\"result\":\"success\"\r\n}";
     }
 }
