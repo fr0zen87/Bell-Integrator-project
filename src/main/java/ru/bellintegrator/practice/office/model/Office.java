@@ -30,13 +30,13 @@ public class Office {
     @Version
     private Integer version;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "phone")
+    @Column(name = "phone", length = 12)
     private String phone;
 
     @Column(name = "is_active")
