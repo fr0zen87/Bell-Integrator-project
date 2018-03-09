@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.organization.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import java.util.List;
 public class OrganizationControllerImpl implements OrganizationController {
 
     private final OrganizationService organizationService;
+    private final String SUCCESS_MESSAGE = "{\r\n\"result\":\"success\"\r\n}";
 
     @Autowired
     public OrganizationControllerImpl(OrganizationService organizationService) {
@@ -35,8 +37,14 @@ public class OrganizationControllerImpl implements OrganizationController {
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Organization loadById(@PathVariable("id") Long id) {
-        return organizationService.loadById(id);
+    public String loadById(@PathVariable("id") Long id) {
+        try {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(organizationService.loadById(id));
+        } catch (Exception e) {
+            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+        }
     }
 
     @Override
@@ -44,8 +52,12 @@ public class OrganizationControllerImpl implements OrganizationController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public String update(@RequestBody @NotNull Organization organization) {
-        organizationService.update(organization);
-        return "{\r\n\"result\":\"success\"\r\n}";
+        try {
+            organizationService.update(organization);
+            return SUCCESS_MESSAGE;
+        } catch (Exception e) {
+            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+        }
     }
 
     @Override
@@ -53,8 +65,12 @@ public class OrganizationControllerImpl implements OrganizationController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public String save(@RequestBody @NotNull Organization organization) {
-        organizationService.save(organization);
-        return "{\r\n\"result\":\"success\"\r\n}";
+        try {
+            organizationService.save(organization);
+            return SUCCESS_MESSAGE;
+        } catch (Exception e) {
+            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+        }
     }
 
     @Override
@@ -62,7 +78,11 @@ public class OrganizationControllerImpl implements OrganizationController {
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public String delete(@RequestBody @NotNull Organization organization) {
-        organizationService.delete(organization.getId());
-        return "{\r\n\"result\":\"success\"\r\n}";
+        try {
+            organizationService.delete(organization.getId());
+            return SUCCESS_MESSAGE;
+        } catch (Exception e) {
+            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+        }
     }
 }

@@ -40,7 +40,8 @@ public class OrganizationDAOImpl implements OrganizationDAO {
     public Organization loadById(Long id) {
         Organization organization = em.find(Organization.class, id);
         if (organization == null) {
-            throw new NullPointerException(String.format("Organization with id=%s not found", id));
+            throw new NullPointerException(
+                    String.format("Organization with id=%s not found", id));
         }
         return organization;
     }
@@ -49,7 +50,8 @@ public class OrganizationDAOImpl implements OrganizationDAO {
     public Organization update(Organization organization) {
         Organization org = em.find(Organization.class, organization.getId());
         if (org == null) {
-            throw new NullPointerException(String.format("Organization with id=%s not found", organization.getId()));
+            throw new NullPointerException(
+                    String.format("Organization with id=%s not found", organization.getId()));
         }
         org.setName(organization.getName());
         org.setFullName(organization.getFullName());
@@ -70,7 +72,8 @@ public class OrganizationDAOImpl implements OrganizationDAO {
     public void delete(Long id) {
         Organization organization = em.find(Organization.class, id);
         if (organization == null) {
-            throw new NullPointerException(String.format("Organization with id=%s not found", id));
+            throw new NullPointerException(
+                    String.format("Organization with id=%s not found", id));
         }
         em.remove(loadById(id));
     }

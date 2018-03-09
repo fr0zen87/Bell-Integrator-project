@@ -11,7 +11,7 @@ public interface OrganizationController {
 
     List<Organization> list(Organization organization);
 
-    Organization loadById(Long id);
+    String loadById(Long id);
 
     String update(Organization organization);
 
