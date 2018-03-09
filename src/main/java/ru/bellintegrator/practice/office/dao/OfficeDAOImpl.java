@@ -49,9 +49,8 @@ public class OfficeDAOImpl implements OfficeDAO {
         office.setAddress(o.getAddress());
         office.setPhone(o.getPhone());
         office.setActive(true);
-        office.setOrganization(o.getOrganization());
         if (o.getOrganization() != null) {
-            o.getOrganization().addOffice(o);
+            office.getOrganization().addOffice(o);
         }
         return em.merge(office);
     }

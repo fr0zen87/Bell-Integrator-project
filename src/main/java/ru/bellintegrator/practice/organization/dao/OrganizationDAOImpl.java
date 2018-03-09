@@ -89,7 +89,10 @@ public class OrganizationDAOImpl implements OrganizationDAO {
             throw new NullPointerException(
                     String.format("Organization with id=%s not found", id));
         }
-        organization.getOffices().forEach(organization::removeOffice);
+        organization.getOffices().forEach(office -> {
+            office.setOrganization(null);
+        });
+        organization.setOffices(null);
         em.remove(organization);
     }
 }
