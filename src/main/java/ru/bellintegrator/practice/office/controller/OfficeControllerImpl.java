@@ -3,6 +3,7 @@ package ru.bellintegrator.practice.office.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import ru.bellintegrator.practice.MyError;
 import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.office.service.OfficeService;
 
@@ -33,7 +34,7 @@ public class OfficeControllerImpl implements OfficeController {
             return objectMapper.writerWithDefaultPrettyPrinter()
                     .writeValueAsString(officeService.findOfficeById(id));
         } catch (Exception e) {
-            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+            return new MyError(e.getMessage()).toString();
         }
     }
 
@@ -46,7 +47,7 @@ public class OfficeControllerImpl implements OfficeController {
             officeService.update(office);
             return SUCCESS_MESSAGE;
         } catch (Exception e) {
-            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+            return new MyError(e.getMessage()).toString();
         }
     }
 
@@ -59,7 +60,7 @@ public class OfficeControllerImpl implements OfficeController {
             officeService.delete(office.getId());
             return SUCCESS_MESSAGE;
         } catch (Exception e) {
-            return "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+            return new MyError(e.getMessage()).toString();
         }
     }
 
@@ -72,7 +73,7 @@ public class OfficeControllerImpl implements OfficeController {
             officeService.save(office);
             return SUCCESS_MESSAGE;
         } catch (Exception e) {
-            return  "{\r\n\"error\":\"" + e.getCause().getMessage() + "\"\r\n}";
+            return new MyError(e.getCause().getMessage()).toString();
         }
     }
 }

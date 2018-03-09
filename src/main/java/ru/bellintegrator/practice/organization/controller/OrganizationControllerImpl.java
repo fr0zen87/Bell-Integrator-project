@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import ru.bellintegrator.practice.MyError;
 import ru.bellintegrator.practice.organization.model.Organization;
 import ru.bellintegrator.practice.organization.service.OrganizationService;
 
@@ -43,7 +44,7 @@ public class OrganizationControllerImpl implements OrganizationController {
             return objectMapper.writerWithDefaultPrettyPrinter()
                     .writeValueAsString(organizationService.loadById(id));
         } catch (Exception e) {
-            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+            return new MyError(e.getMessage()).toString();
         }
     }
 
@@ -56,7 +57,7 @@ public class OrganizationControllerImpl implements OrganizationController {
             organizationService.update(organization);
             return SUCCESS_MESSAGE;
         } catch (Exception e) {
-            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+            return new MyError(e.getMessage()).toString();
         }
     }
 
@@ -69,7 +70,7 @@ public class OrganizationControllerImpl implements OrganizationController {
             organizationService.save(organization);
             return SUCCESS_MESSAGE;
         } catch (Exception e) {
-            return  "{\r\n\"error\":\"" + e.getCause().getMessage() + "\"\r\n}";
+            return new MyError(e.getCause().getMessage()).toString();
         }
     }
 
@@ -82,7 +83,7 @@ public class OrganizationControllerImpl implements OrganizationController {
             organizationService.delete(organization.getId());
             return SUCCESS_MESSAGE;
         } catch (Exception e) {
-            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+            return new MyError(e.getMessage()).toString();
         }
     }
 }
