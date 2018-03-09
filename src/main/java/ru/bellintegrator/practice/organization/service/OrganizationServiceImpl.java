@@ -36,7 +36,9 @@ public class OrganizationServiceImpl implements OrganizationService {
     @Override
     @Transactional(readOnly = true)
     public Organization loadById(Long id) {
-        return dao.loadById(id);
+        Organization result = dao.loadById(id);
+        log.debug(result.toString());
+        return result;
     }
 
     @Override

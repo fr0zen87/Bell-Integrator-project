@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS organization (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     version INTEGER NOT NULL,
     name VARCHAR(50) NOT NULL,
-    full_name VARCHAR(255) NOT NULL,
+    full_name VARCHAR(255) NOT NULL UNIQUE,
     inn CHAR(12) NOT NULL,
     kpp CHAR(9) NOT NULL,
     address VARCHAR(255) NOT NULL,

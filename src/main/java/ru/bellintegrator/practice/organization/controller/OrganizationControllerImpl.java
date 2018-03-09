@@ -69,7 +69,7 @@ public class OrganizationControllerImpl implements OrganizationController {
             organizationService.save(organization);
             return SUCCESS_MESSAGE;
         } catch (Exception e) {
-            return  "{\r\n\"error\":\"" + e.getMessage() + "\"\r\n}";
+            return  "{\r\n\"error\":\"" + e.getCause().getMessage() + "\"\r\n}";
         }
     }
 

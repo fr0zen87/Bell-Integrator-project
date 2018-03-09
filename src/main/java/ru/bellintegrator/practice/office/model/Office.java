@@ -1,5 +1,7 @@
 package ru.bellintegrator.practice.office.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import ru.bellintegrator.practice.user.model.User;
 import ru.bellintegrator.practice.organization.model.Organization;
 
@@ -42,14 +44,13 @@ public class Office {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
+    @JsonIgnore
     private Organization organization;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "office",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JsonIgnore
     private List<User> users;
-
-    public Office() {
-    }
 
     public Long getId() {
         return id;
@@ -83,6 +84,7 @@ public class Office {
         return isActive;
     }
 
+    @JsonSetter(value = "isActive")
     public void setActive(boolean active) {
         isActive = active;
     }
@@ -98,12 +100,11 @@ public class Office {
     @Override
     public String toString() {
         return "Office{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
                 ", phone='" + (phone != null ? phone : "") + '\'' +
                 ", isActive=" + (isActive != null ? isActive : "") +
-                ", organization=" + organization +
-                ", users=" + users +
                 '}';
     }
 }

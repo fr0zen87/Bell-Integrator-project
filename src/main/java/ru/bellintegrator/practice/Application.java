@@ -15,6 +15,9 @@ import ru.bellintegrator.practice.countries.dao.CountryDAOImpl;
 import ru.bellintegrator.practice.documents.dao.DocumentsDAOImpl;
 import ru.bellintegrator.practice.countries.service.CountriesServiceImpl;
 import ru.bellintegrator.practice.documents.service.DocumentsServiceImpl;
+import ru.bellintegrator.practice.office.controller.OfficeControllerImpl;
+import ru.bellintegrator.practice.office.dao.OfficeDAOImpl;
+import ru.bellintegrator.practice.office.service.OfficeServiceImpl;
 import ru.bellintegrator.practice.organization.controller.OrganizationControllerImpl;
 import ru.bellintegrator.practice.organization.dao.OrganizationDAOImpl;
 import ru.bellintegrator.practice.organization.service.OrganizationServiceImpl;
@@ -34,7 +37,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @ComponentScan(basePackageClasses = {
         DocumentsControllerImpl.class, DocumentsServiceImpl.class, DocumentsDAOImpl.class,
         CountriesControllerImpl.class, CountriesServiceImpl.class, CountryDAOImpl.class,
-        OrganizationControllerImpl.class, OrganizationServiceImpl.class, OrganizationDAOImpl.class
+        OrganizationControllerImpl.class, OrganizationServiceImpl.class, OrganizationDAOImpl.class,
+        OfficeControllerImpl.class, OfficeServiceImpl.class, OfficeDAOImpl.class
 })
 public class Application {
 
