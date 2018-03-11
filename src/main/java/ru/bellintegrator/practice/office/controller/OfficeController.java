@@ -2,20 +2,20 @@ package ru.bellintegrator.practice.office.controller;
 
 import ru.bellintegrator.practice.office.model.Office;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * {@inheritDoc}
  */
 public interface OfficeController {
 
-    List<Office> list(Office office);
+    Map list(Office office);
 
-    String findOfficeById(Long id);
+    Map findOfficeById(Long id);
 
-    String update(Office office);
+    Map update(Office office);
 
-    String delete(Office office);
+    Map delete(Office office);
 
-    String save(Office office);
+    Map save(Office office);
 }
