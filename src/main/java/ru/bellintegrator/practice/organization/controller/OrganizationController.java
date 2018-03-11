@@ -2,20 +2,20 @@ package ru.bellintegrator.practice.organization.controller;
 
 import ru.bellintegrator.practice.organization.model.Organization;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * {@inheritDoc}
  */
 public interface OrganizationController {
 
-    List<Organization> list(Organization organization);
+    Map list(Organization organization);
 
-    String loadById(Long id);
+    Map loadById(Long id);
 
-    String update(Organization organization);
+    Map update(Organization organization);
 
-    String save(Organization organization);
+    Map save(Organization organization);
 
-    String delete(Organization organization);
+    Map delete(Organization organization);
 }

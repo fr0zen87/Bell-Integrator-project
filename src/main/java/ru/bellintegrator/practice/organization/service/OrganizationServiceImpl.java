@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.organization.dao.OrganizationDAO;
 import ru.bellintegrator.practice.organization.model.Organization;
+import ru.bellintegrator.practice.organization.model.OrganizationView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -27,10 +29,18 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Organization> list(String name, String inn, boolean isActive) {
+    public List<OrganizationView> list(String name, String inn, boolean isActive) {
         List<Organization> list = dao.list(name, inn, isActive);
-        log.debug(list.toString());
-        return list;
+        List<OrganizationView> result = new ArrayList<>();
+        list.forEach(organization -> {
+            OrganizationView view = new OrganizationView();
+            view.setId(organization.getId());
+            view.setName(organization.getName());
+            view.setActive(organization.isActive());
+            log.debug(view.toString());
+            result.add(view);
+        });
+        return result;
     }
 
     @Override

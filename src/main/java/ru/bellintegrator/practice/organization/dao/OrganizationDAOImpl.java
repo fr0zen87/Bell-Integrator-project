@@ -24,14 +24,19 @@ public class OrganizationDAOImpl implements OrganizationDAO {
 
     @Override
     public List<Organization> list(String name, String inn, boolean isActive) {
-        // TODO: 09.03.2018 add filter
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = builder.createQuery(Organization.class);
 
         Root<Organization> organization = criteriaQuery.from(Organization.class);
-        criteriaQuery.where(builder.equal(organization.get("name"), name),
-                builder.equal(organization.get("inn"), inn),
-                builder.equal(organization.get("isActive"), true));
+
+        if (inn != null) {
+            criteriaQuery.where(builder.equal(organization.get("name"), name),
+                    builder.equal(organization.get("inn"), inn),
+                    builder.equal(organization.get("isActive"), true));
+        } else {
+            criteriaQuery.where(builder.equal(organization.get("name"), name),
+                    builder.equal(organization.get("isActive"), true));
+        }
 
         TypedQuery<Organization> query = em.createQuery(criteriaQuery);
 

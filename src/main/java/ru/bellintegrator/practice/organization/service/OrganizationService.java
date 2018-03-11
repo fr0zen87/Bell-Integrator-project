@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.organization.service;
 
 import ru.bellintegrator.practice.organization.model.Organization;
+import ru.bellintegrator.practice.organization.model.OrganizationView;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface OrganizationService {
 
-    List<Organization> list(String name, String inn, boolean isActive);
+    List<OrganizationView> list(String name, String inn, boolean isActive);
 
     Organization loadById(Long id);
 
