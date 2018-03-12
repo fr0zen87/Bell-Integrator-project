@@ -1,7 +1,7 @@
 package ru.bellintegrator.practice.organization.service;
 
 import ru.bellintegrator.practice.organization.model.Organization;
-import ru.bellintegrator.practice.organization.model.OrganizationView;
+import ru.bellintegrator.practice.organization.views.OrganizationView;
 
 import java.util.List;
 

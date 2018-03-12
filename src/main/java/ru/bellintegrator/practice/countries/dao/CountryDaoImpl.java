@@ -1,27 +1,27 @@
-package ru.bellintegrator.practice.documents.dao;
+package ru.bellintegrator.practice.countries.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import ru.bellintegrator.practice.documents.model.Documents;
+import ru.bellintegrator.practice.countries.model.Country;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class DocumentsDAOImpl implements DocumentsDAO {
+public class CountryDaoImpl implements CountryDao {
 
     private final EntityManager em;
 
     @Autowired
-    public DocumentsDAOImpl(EntityManager em) {
+    public CountryDaoImpl(EntityManager em) {
         this.em = em;
     }
 
     @Override
-    public List<Documents> docs() {
-        TypedQuery<Documents> query = em.createQuery("SELECT d FROM Documents d",
-                Documents.class);
+    public List<Country> countries() {
+        TypedQuery<Country> query = em.createQuery("SELECT c FROM Country c",
+                Country.class);
         return query.getResultList();
     }
 }

@@ -9,17 +9,17 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import ru.bellintegrator.practice.countries.controller.CountriesControllerImpl;
-import ru.bellintegrator.practice.documents.controller.DocumentsControllerImpl;
-import ru.bellintegrator.practice.countries.dao.CountryDAOImpl;
-import ru.bellintegrator.practice.documents.dao.DocumentsDAOImpl;
-import ru.bellintegrator.practice.countries.service.CountriesServiceImpl;
-import ru.bellintegrator.practice.documents.service.DocumentsServiceImpl;
+import ru.bellintegrator.practice.countries.controller.CountryControllerImpl;
+import ru.bellintegrator.practice.documents.controller.DocTypeControllerImpl;
+import ru.bellintegrator.practice.countries.dao.CountryDaoImpl;
+import ru.bellintegrator.practice.documents.dao.DocTypeDaoImpl;
+import ru.bellintegrator.practice.countries.service.CountryServiceImpl;
+import ru.bellintegrator.practice.documents.service.DocTypeServiceImpl;
 import ru.bellintegrator.practice.office.controller.OfficeControllerImpl;
-import ru.bellintegrator.practice.office.dao.OfficeDAOImpl;
+import ru.bellintegrator.practice.office.dao.OfficeDaoImpl;
 import ru.bellintegrator.practice.office.service.OfficeServiceImpl;
 import ru.bellintegrator.practice.organization.controller.OrganizationControllerImpl;
-import ru.bellintegrator.practice.organization.dao.OrganizationDAOImpl;
+import ru.bellintegrator.practice.organization.dao.OrganizationDaoImpl;
 import ru.bellintegrator.practice.organization.service.OrganizationServiceImpl;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.service.ApiInfo;
@@ -35,10 +35,10 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @ImportResource("spring_mvc_config.xml")
 @SpringBootApplication
 @ComponentScan(basePackageClasses = {
-        DocumentsControllerImpl.class, DocumentsServiceImpl.class, DocumentsDAOImpl.class,
-        CountriesControllerImpl.class, CountriesServiceImpl.class, CountryDAOImpl.class,
-        OrganizationControllerImpl.class, OrganizationServiceImpl.class, OrganizationDAOImpl.class,
-        OfficeControllerImpl.class, OfficeServiceImpl.class, OfficeDAOImpl.class
+        DocTypeControllerImpl.class, DocTypeServiceImpl.class, DocTypeDaoImpl.class,
+        CountryControllerImpl.class, CountryServiceImpl.class, CountryDaoImpl.class,
+        OrganizationControllerImpl.class, OrganizationServiceImpl.class, OrganizationDaoImpl.class,
+        OfficeControllerImpl.class, OfficeServiceImpl.class, OfficeDaoImpl.class
 })
 public class Application {
 

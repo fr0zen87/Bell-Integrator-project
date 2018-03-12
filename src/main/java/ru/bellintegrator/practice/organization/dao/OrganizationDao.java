@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * {@inheritDoc}
  */
-public interface OrganizationDAO {
+public interface OrganizationDao {
 
     List<Organization> list(String name, String inn, boolean isActive);
 

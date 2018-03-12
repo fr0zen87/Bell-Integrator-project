@@ -13,12 +13,12 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 @Repository
-public class OfficeDAOImpl implements OfficeDAO {
+public class OfficeDaoImpl implements OfficeDao {
 
     private final EntityManager em;
 
     @Autowired
-    public OfficeDAOImpl(EntityManager entityManager) {
+    public OfficeDaoImpl(EntityManager entityManager) {
         this.em = entityManager;
     }
 

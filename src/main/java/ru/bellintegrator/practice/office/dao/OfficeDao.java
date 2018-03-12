@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * {@inheritDoc}
  */
-public interface OfficeDAO {
+public interface OfficeDao {
 
     List<Office> list(Office office);
 

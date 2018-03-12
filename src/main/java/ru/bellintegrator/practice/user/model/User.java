@@ -27,22 +27,22 @@ public class User {
     @Version
     private int version;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name", length = 20, nullable = false)
     private String firstName;
 
-    @Column(name = "second_name", nullable = false)
+    @Column(name = "second_name", length = 20, nullable = false)
     private String secondName;
 
-    @Column(name = "middleName")
+    @Column(name = "middleName", length = 20)
     private String middleName;
 
     @Column(name = "position", nullable = false)
     private String position;
 
-    @Column(name = "phone")
+    @Column(name = "phone", length = 12)
     private String phone;
 
-    @Column(name = "document_code", nullable = false)
+    @Column(name = "document_code", length = 2, nullable = false)
     private String documentCode;
 
     @Column(name = "document_name", nullable = false)
@@ -58,7 +58,7 @@ public class User {
     @Column(name = "citizenship_name", nullable = false)
     private String citizenshipName;
 
-    @Column(name = "citizenship_code", nullable = false)
+    @Column(name = "citizenship_code", length = 3, nullable = false)
     private String citizenshipCode;
 
     @Column(name = "is_identified")
@@ -76,9 +76,6 @@ public class User {
 
     @Column(name = "nickname", nullable = false)
     private String nickname;
-
-    public User() {
-    }
 
     public Long getId() {
         return id;

@@ -5,27 +5,27 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bellintegrator.practice.documents.dao.DocumentsDAO;
-import ru.bellintegrator.practice.documents.model.Documents;
+import ru.bellintegrator.practice.documents.dao.DocTypeDao;
+import ru.bellintegrator.practice.documents.model.DocType;
 
 import java.util.List;
 
 @Service
-public class DocumentsServiceImpl implements DocumentsService {
+public class DocTypeServiceImpl implements DocTypeService {
 
-    private final Logger log = LoggerFactory.getLogger(DocumentsServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(DocTypeServiceImpl.class);
 
-    private final DocumentsDAO dao;
+    private final DocTypeDao dao;
 
     @Autowired
-    public DocumentsServiceImpl(DocumentsDAO dao) {
+    public DocTypeServiceImpl(DocTypeDao dao) {
         this.dao = dao;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<Documents> docs() {
-        List<Documents> all = dao.docs();
+    public List<DocType> docs() {
+        List<DocType> all = dao.docs();
         log.debug(all.toString());
         return dao.docs();
     }

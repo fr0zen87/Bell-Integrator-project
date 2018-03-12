@@ -1,6 +1,4 @@
-package ru.bellintegrator.practice.countries.model;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
+package ru.bellintegrator.practice.documents.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,13 +8,12 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "country")
-public class Countries {
+@Table(name = "doc_type")
+public class DocType {
 
     @Id
     @Column(name = "id")
     @GeneratedValue
-    @JsonIgnore
     private Long id;
 
     @Version
@@ -25,11 +22,8 @@ public class Countries {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", length = 2, nullable = false)
     private String code;
-
-    public Countries() {
-    }
 
     public Long getId() {
         return id;
@@ -53,7 +47,7 @@ public class Countries {
 
     @Override
     public String toString() {
-        return "Countries{" +
+        return "DocType{" +
                 "name='" + name + '\'' +
                 ", code='" + code + '\'' +
                 '}';

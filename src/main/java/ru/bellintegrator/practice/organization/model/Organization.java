@@ -1,7 +1,5 @@
 package ru.bellintegrator.practice.organization.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonSetter;
 import ru.bellintegrator.practice.office.model.Office;
 
 import javax.persistence.CascadeType;
@@ -48,7 +46,6 @@ public class Organization {
     @Column(name = "is_active")
     private Boolean isActive;
 
-    @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Office> offices;
@@ -109,7 +106,6 @@ public class Organization {
         return isActive;
     }
 
-    @JsonSetter(value = "isActive")
     public void setActive(boolean active) {
         isActive = active;
     }

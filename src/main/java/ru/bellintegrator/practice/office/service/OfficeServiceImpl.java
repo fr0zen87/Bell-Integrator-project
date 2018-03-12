@@ -4,7 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bellintegrator.practice.office.dao.OfficeDAO;
+import ru.bellintegrator.practice.office.dao.OfficeDao;
 import ru.bellintegrator.practice.office.model.Office;
 
 import java.util.List;
@@ -14,9 +14,9 @@ public class OfficeServiceImpl implements OfficeService {
 
     private final Logger log = LoggerFactory.getLogger(OfficeServiceImpl.class);
 
-    private final OfficeDAO dao;
+    private final OfficeDao dao;
 
-    public OfficeServiceImpl(OfficeDAO dao) {
+    public OfficeServiceImpl(OfficeDao dao) {
         this.dao = dao;
     }
 
