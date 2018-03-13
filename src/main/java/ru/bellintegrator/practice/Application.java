@@ -22,14 +22,14 @@ import ru.bellintegrator.practice.organization.controller.OrganizationController
 import ru.bellintegrator.practice.organization.dao.OrganizationDaoImpl;
 import ru.bellintegrator.practice.organization.service.OrganizationServiceImpl;
 import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Locale;
-
-import static springfox.documentation.builders.PathSelectors.regex;
 
 @EnableSwagger2
 @ImportResource("spring_mvc_config.xml")
@@ -63,16 +63,20 @@ public class Application {
     }
 
     @Bean
-    public Docket postApi() {
-        return new Docket(DocumentationType.SWAGGER_2).groupName("persons").apiInfo(apiInfo()).
-                select().paths(regex("/person.*")).build();
+    public Docket api() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .select()
+                .apis(RequestHandlerSelectors.any())
+                .paths(PathSelectors.regex("/api/.*"))
+                .build()
+                .apiInfo(apiInfo());
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Spring REST Sample with Swagger")
                 .description("Spring REST Sample with Swagger")
-                .contact("https://github.com/azEsm/empty_project")
+                .contact("https://github.com/fr0zen87/Bell-Integrator-project")
                 .version("1.0")
                 .build();
     }
