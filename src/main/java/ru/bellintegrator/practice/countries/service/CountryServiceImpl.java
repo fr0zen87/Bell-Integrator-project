@@ -5,11 +5,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.bellintegrator.practice.countries.views.CountryView;
 import ru.bellintegrator.practice.countries.dao.CountryDao;
 import ru.bellintegrator.practice.documents.service.DocTypeServiceImpl;
-import ru.bellintegrator.practice.countries.model.Country;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class CountryServiceImpl implements CountryService {
@@ -25,9 +28,18 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Country> countries() {
-        List<Country> all = dao.countries();
-        log.debug(all.toString());
-        return dao.countries();
+    public Map<String, List<CountryView>> countries() {
+
+        Map<String, List<CountryView>> result = new HashMap<>();
+        List<CountryView> countryViews = new ArrayList<>();
+        dao.findAll().forEach(country -> {
+            CountryView countryView = new CountryView();
+            countryView.setName(country.getName());
+            countryView.setCode(country.getCode());
+            log.debug(countryView.toString());
+            countryViews.add(countryView);
+        });
+        result.put("data", countryViews);
+        return result;
     }
 }

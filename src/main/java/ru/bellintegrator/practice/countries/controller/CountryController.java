@@ -1,12 +1,14 @@
 package ru.bellintegrator.practice.countries.controller;
 
-import ru.bellintegrator.practice.countries.model.Country;
+import ru.bellintegrator.practice.countries.views.CountryView;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * {@inheritDoc}
  */
 public interface CountryController {
-    List<Country> countries();
+
+    Map<String, List<CountryView>> countries();
 }
