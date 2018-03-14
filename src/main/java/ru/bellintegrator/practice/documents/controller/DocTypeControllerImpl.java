@@ -1,14 +1,14 @@
 package ru.bellintegrator.practice.documents.controller;
 
-import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bellintegrator.practice.documents.model.DocType;
 import ru.bellintegrator.practice.documents.service.DocTypeService;
+import ru.bellintegrator.practice.documents.views.DocTypeView;
 
 import java.util.List;
+import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
@@ -16,17 +16,16 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DocTypeControllerImpl implements DocTypeController {
 
-    private final DocTypeService docsService;
+    private final DocTypeService docTypeService;
 
     @Autowired
     public DocTypeControllerImpl(DocTypeService docsService) {
-        this.docsService = docsService;
+        this.docTypeService = docsService;
     }
 
     @Override
-    @ApiOperation(value = "getDocs", nickname = "getDocs", httpMethod = "GET")
     @RequestMapping(value = "/docs", method = {GET})
-    public List<DocType> docs() {
-        return docsService.docs();
+    public Map<String, List<DocTypeView>> documents() {
+        return docTypeService.documents();
     }
 }

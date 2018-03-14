@@ -11,7 +11,6 @@ import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 import ru.bellintegrator.practice.countries.controller.CountryControllerImpl;
 import ru.bellintegrator.practice.documents.controller.DocTypeControllerImpl;
-import ru.bellintegrator.practice.documents.dao.DocTypeDaoImpl;
 import ru.bellintegrator.practice.countries.service.CountryServiceImpl;
 import ru.bellintegrator.practice.documents.service.DocTypeServiceImpl;
 import ru.bellintegrator.practice.office.controller.OfficeControllerImpl;
@@ -34,7 +33,7 @@ import java.util.Locale;
 @ImportResource("spring_mvc_config.xml")
 @SpringBootApplication
 @ComponentScan(basePackageClasses = {
-        DocTypeControllerImpl.class, DocTypeServiceImpl.class, DocTypeDaoImpl.class,
+        DocTypeControllerImpl.class, DocTypeServiceImpl.class,
         CountryControllerImpl.class, CountryServiceImpl.class,
         OrganizationControllerImpl.class, OrganizationServiceImpl.class, OrganizationDaoImpl.class,
         OfficeControllerImpl.class, OfficeServiceImpl.class, OfficeDaoImpl.class

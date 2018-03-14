@@ -1,13 +1,10 @@
 package ru.bellintegrator.practice.documents.dao;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import ru.bellintegrator.practice.documents.model.DocType;
-
-import java.util.List;
 
 /**
  * {@inheritDoc}
  */
-public interface DocTypeDao {
-
-    List<DocType> docs();
+public interface DocTypeDao extends JpaRepository<DocType, Long> {
 }

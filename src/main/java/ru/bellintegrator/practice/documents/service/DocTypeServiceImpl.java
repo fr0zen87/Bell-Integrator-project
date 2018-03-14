@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.documents.dao.DocTypeDao;
-import ru.bellintegrator.practice.documents.model.DocType;
+import ru.bellintegrator.practice.documents.views.DocTypeView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class DocTypeServiceImpl implements DocTypeService {
@@ -24,9 +27,18 @@ public class DocTypeServiceImpl implements DocTypeService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<DocType> docs() {
-        List<DocType> all = dao.docs();
-        log.debug(all.toString());
-        return dao.docs();
+    public Map<String, List<DocTypeView>> documents() {
+
+        Map<String, List<DocTypeView>> result = new HashMap<>();
+        List<DocTypeView> docTypeViews = new ArrayList<>();
+        dao.findAll().forEach(docType -> {
+            DocTypeView docTypeView = new DocTypeView();
+            docTypeView.setName(docType.getName());
+            docTypeView.setCode(docType.getCode());
+            log.debug(docTypeView.toString());
+            docTypeViews.add(docTypeView);
+        });
+        result.put("data", docTypeViews);
+        return result;
     }
 }
