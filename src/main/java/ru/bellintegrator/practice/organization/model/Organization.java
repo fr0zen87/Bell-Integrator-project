@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.organization.model;
 
 import ru.bellintegrator.practice.office.model.Office;
+import ru.bellintegrator.practice.organization.views.RequestView;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -49,6 +50,19 @@ public class Organization {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Office> offices;
+
+    public Organization() {
+    }
+
+    public Organization(RequestView view) {
+        this.name = view.getName();
+        this.fullName = view.getFullName();
+        this.inn = view.getInn();
+        this.kpp = view.getKpp();
+        this.address = view.getAddress();
+        this.phone = view.getPhone();
+        this.isActive = view.getActive();
+    }
 
     public Long getId() {
         return id;

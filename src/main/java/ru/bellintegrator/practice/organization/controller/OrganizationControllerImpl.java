@@ -2,17 +2,17 @@ package ru.bellintegrator.practice.organization.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bellintegrator.practice.organization.model.Organization;
 import ru.bellintegrator.practice.organization.service.OrganizationService;
+import ru.bellintegrator.practice.organization.views.RequestView;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/organization", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -29,25 +29,24 @@ public class OrganizationControllerImpl implements OrganizationController {
     @RequestMapping(value = "/list",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             method = RequestMethod.POST)
-    public Map list(@RequestBody @NotNull Organization organization) {
+    public ResponseEntity<Object> list(@RequestBody @NotNull RequestView view) {
         try {
-            if (organization.getName() == null) {
+            if (view.getName() == null) {
                 throw new Exception("Name is required");
             }
-            return Collections.singletonMap("data", organizationService.list(organization.getName(),
-                    organization.getInn(), organization.isActive()));
+            return ResponseEntity.ok(Collections.singletonMap("data", organizationService.list(view)));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Map loadById(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> loadById(@PathVariable("id") Long id) {
         try {
-            return Collections.singletonMap("data", organizationService.loadById(id));
+            return ResponseEntity.ok(Collections.singletonMap("data", organizationService.loadById(id)));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
     }
 
@@ -55,12 +54,12 @@ public class OrganizationControllerImpl implements OrganizationController {
     @RequestMapping(value = "/update",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map update(@RequestBody @NotNull Organization organization) {
+    public ResponseEntity<Object> update(@RequestBody @NotNull RequestView view) {
         try {
-            organizationService.update(organization);
-            return Collections.singletonMap("data", Collections.singletonMap("result","success"));
+            organizationService.update(view);
+            return ResponseEntity.ok().body(Collections.singletonMap("data", Collections.singletonMap("result","success")));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getCause().getMessage()));
         }
     }
 
@@ -68,12 +67,12 @@ public class OrganizationControllerImpl implements OrganizationController {
     @RequestMapping(value = "/save",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map save(@RequestBody @NotNull Organization organization) {
+    public ResponseEntity<Object> save(@RequestBody @NotNull RequestView view) {
         try {
-            organizationService.save(organization);
-            return Collections.singletonMap("data", Collections.singletonMap("result","success"));
+            organizationService.save(view);
+            return ResponseEntity.ok().body(Collections.singletonMap("data", Collections.singletonMap("result","success")));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getCause().getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getCause().getMessage()));
         }
     }
 
@@ -81,12 +80,12 @@ public class OrganizationControllerImpl implements OrganizationController {
     @RequestMapping(value = "/delete",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map delete(@RequestBody @NotNull Organization organization) {
+    public ResponseEntity<Object> delete(@RequestBody @NotNull RequestView view) {
         try {
-            organizationService.delete(organization.getId());
-            return Collections.singletonMap("data", Collections.singletonMap("result","success"));
+            organizationService.delete(view.getId());
+            return ResponseEntity.ok().body(Collections.singletonMap("data", Collections.singletonMap("result","success")));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getCause().getMessage()));
         }
     }
 }

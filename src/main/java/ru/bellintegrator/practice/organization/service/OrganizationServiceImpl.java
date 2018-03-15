@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.organization.dao.OrganizationDao;
 import ru.bellintegrator.practice.organization.model.Organization;
 import ru.bellintegrator.practice.organization.views.OrganizationView;
+import ru.bellintegrator.practice.organization.views.RequestView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,18 +30,17 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrganizationView> list(String name, String inn, boolean isActive) {
-        List<Organization> list = dao.list(name, inn, isActive);
-        List<OrganizationView> result = new ArrayList<>();
-        list.forEach(organization -> {
-            OrganizationView view = new OrganizationView();
-            view.setId(organization.getId());
-            view.setName(organization.getName());
-            view.setActive(organization.isActive());
-            log.debug(view.toString());
-            result.add(view);
+    public List<OrganizationView> list(RequestView view) {
+        List<OrganizationView> organizationViews = new ArrayList<>();
+        dao.list(view).forEach(organization -> {
+            OrganizationView organizationView = new OrganizationView();
+            organizationView.setId(organization.getId());
+            organizationView.setName(organization.getName());
+            organizationView.setActive(organization.isActive());
+            log.debug(organizationView.toString());
+            organizationViews.add(organizationView);
         });
-        return result;
+        return organizationViews;
     }
 
     @Override
@@ -53,16 +53,14 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public Organization update(Organization organization) {
-        Organization result = dao.update(organization);
-        log.debug(result.toString());
-        return result;
+    public void update(RequestView view) {
+        dao.update(view);
     }
 
     @Override
     @Transactional
-    public void save(Organization organization) {
-        dao.save(organization);
+    public void save(RequestView view) {
+        dao.save(view);
     }
 
     @Override

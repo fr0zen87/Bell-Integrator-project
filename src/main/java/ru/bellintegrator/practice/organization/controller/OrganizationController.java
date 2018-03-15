@@ -1,21 +1,20 @@
 package ru.bellintegrator.practice.organization.controller;
 
-import ru.bellintegrator.practice.organization.model.Organization;
-
-import java.util.Map;
+import org.springframework.http.ResponseEntity;
+import ru.bellintegrator.practice.organization.views.RequestView;
 
 /**
  * {@inheritDoc}
  */
 public interface OrganizationController {
 
-    Map list(Organization organization);
+    ResponseEntity<Object> list(RequestView view);
 
-    Map loadById(Long id);
+    ResponseEntity<Object> loadById(Long id);
 
-    Map update(Organization organization);
+    ResponseEntity<Object> update(RequestView view);
 
-    Map save(Organization organization);
+    ResponseEntity<Object> save(RequestView view);
 
-    Map delete(Organization organization);
+    ResponseEntity<Object> delete(RequestView view);
 }

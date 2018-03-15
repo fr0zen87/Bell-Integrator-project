@@ -2,6 +2,7 @@ package ru.bellintegrator.practice.organization.service;
 
 import ru.bellintegrator.practice.organization.model.Organization;
 import ru.bellintegrator.practice.organization.views.OrganizationView;
+import ru.bellintegrator.practice.organization.views.RequestView;
 
 import java.util.List;
 
@@ -10,13 +11,13 @@ import java.util.List;
  */
 public interface OrganizationService {
 
-    List<OrganizationView> list(String name, String inn, boolean isActive);
+    List<OrganizationView> list(RequestView view);
 
     Organization loadById(Long id);
 
-    Organization update(Organization organization);
+    void update(RequestView view);
 
-    void save(Organization organization);
+    void save(RequestView view);
 
     void delete(Long id);
 }

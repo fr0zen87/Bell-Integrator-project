@@ -3,6 +3,7 @@ package ru.bellintegrator.practice.organization.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.practice.organization.model.Organization;
+import ru.bellintegrator.practice.organization.views.RequestView;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -23,19 +24,24 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public List<Organization> list(String name, String inn, boolean isActive) {
+    public List<Organization> list(RequestView view) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = builder.createQuery(Organization.class);
 
         Root<Organization> organization = criteriaQuery.from(Organization.class);
 
-        if (inn != null) {
-            criteriaQuery.where(builder.equal(organization.get("name"), name),
-                    builder.equal(organization.get("inn"), inn),
-                    builder.equal(organization.get("isActive"), true));
+        if (view.getInn() != null && view.getActive() != null) {
+            criteriaQuery.where(builder.equal(organization.get("name"), view.getName()),
+                    builder.equal(organization.get("inn"), view.getInn()),
+                    builder.equal(organization.get("isActive"), view.getActive()));
+        } else if (view.getInn() != null) {
+            criteriaQuery.where(builder.equal(organization.get("name"), view.getName()),
+                    builder.equal(organization.get("inn"), view.getInn()));
+        } else if (view.getActive() != null) {
+            criteriaQuery.where(builder.equal(organization.get("name"), view.getName()),
+                    builder.equal(organization.get("isActive"), view.getActive()));
         } else {
-            criteriaQuery.where(builder.equal(organization.get("name"), name),
-                    builder.equal(organization.get("isActive"), true));
+            criteriaQuery.where(builder.equal(organization.get("name"), view.getName()));
         }
 
         TypedQuery<Organization> query = em.createQuery(criteriaQuery);
@@ -54,37 +60,37 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public Organization update(Organization organization) {
-        Organization org = em.find(Organization.class, organization.getId());
+    public void update(RequestView view) {
+        Organization org = em.find(Organization.class, view.getId());
         if (org == null) {
             throw new NullPointerException(
-                    String.format("Organization with id=%s not found", organization.getId()));
+                    String.format("Organization with id=%s not found", view.getId()));
         }
-        org.setName(organization.getName());
-        org.setFullName(organization.getFullName());
-        org.setInn(organization.getInn());
-        org.setKpp(organization.getKpp());
-        org.setAddress(organization.getAddress());
-        org.setPhone(organization.getPhone());
+        org.setName(view.getName());
+        org.setFullName(view.getFullName());
+        org.setInn(view.getInn());
+        org.setKpp(view.getKpp());
+        org.setAddress(view.getAddress());
+        org.setPhone(view.getPhone());
         org.setActive(true);
-        return em.merge(org);
+        em.merge(org);
     }
 
     @Override
-    public void save(Organization organization) {
+    public void save(RequestView view) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = builder.createQuery(Organization.class);
 
         Root<Organization> org = criteriaQuery.from(Organization.class);
-        criteriaQuery.where(builder.equal(org.get("fullName"), organization.getFullName()),
-                builder.equal(org.get("isActive"), true));
+        criteriaQuery.where(builder.equal(org.get("fullName"), view.getFullName()));
 
         TypedQuery<Organization> query = em.createQuery(criteriaQuery);
         List<Organization> resultList = query.getResultList();
         if (resultList.size() != 0) {
             throw new EntityExistsException("Organization already exists");
         }
-        em.persist(organization);
+        Organization organizationToPersist = new Organization(view);
+        em.persist(organizationToPersist);
     }
 
     @Override
