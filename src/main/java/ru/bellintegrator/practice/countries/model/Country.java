@@ -7,21 +7,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+/**
+ * Entity class for country table
+ */
 @Entity
 @Table(name = "country")
 public class Country {
 
+    /**
+     * Primary key
+     */
     @Id
     @Column(name = "id")
     @GeneratedValue
     private Long id;
 
+    /**
+     * Hibernate specified field
+     */
     @Version
     private Integer version;
 
+    /**
+     * Country name
+     */
     @Column(name = "name", nullable = false)
     private String name;
 
+    /**
+     * Country code
+     */
     @Column(name = "code", length = 3, nullable = false)
     private String code;
 

@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * {@inheritDoc}
+ * Country controller
  */
 public interface CountryController {
 
+    /**
+     * @return map of all countries
+     */
     Map<String, List<CountryView>> countries();
 }

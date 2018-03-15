@@ -12,6 +12,9 @@ import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 
+/**
+ * {@inheritDoc}
+ */
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class CountryControllerImpl implements CountryController {

@@ -6,9 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * {@inheritDoc}
+ * DocType controller
  */
 public interface DocTypeController {
 
+    /**
+     * @return map of all DocTypes
+     */
     Map<String, List<DocTypeView>> documents();
 }

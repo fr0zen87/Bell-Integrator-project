@@ -1,5 +1,8 @@
 package ru.bellintegrator.practice.documents.views;
 
+/**
+ * Class to view DocType
+ */
 public class DocTypeView {
 
     private String name;

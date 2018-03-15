@@ -6,8 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * {@inheritDoc}
+ * Service to work with Country
  */
 public interface CountryService {
+
+    /**
+     * @return map of all Countries
+     */
     Map<String, List<CountryView>> countries();
 }

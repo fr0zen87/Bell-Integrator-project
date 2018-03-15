@@ -7,21 +7,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+/**
+ * Entity class for doc_type table
+ */
 @Entity
 @Table(name = "doc_type")
 public class DocType {
 
+    /**
+     * Primary key
+     */
     @Id
     @Column(name = "id")
     @GeneratedValue
     private Long id;
 
+    /**
+     * Hibernate specified field
+     */
     @Version
     private Integer version;
 
+    /**
+     * DocType name
+     */
     @Column(name = "name", nullable = false)
     private String name;
 
+    /**
+     * DocType code
+     */
     @Column(name = "code", length = 2, nullable = false)
     private String code;
 

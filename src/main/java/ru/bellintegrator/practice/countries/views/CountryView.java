@@ -1,9 +1,18 @@
 package ru.bellintegrator.practice.countries.views;
 
+/**
+ * Class to view Country
+ */
 public class CountryView {
 
+    /**
+     * Country name
+     */
     private String name;
 
+    /**
+     * Country code
+     */
     private String code;
 
     public String getName() {

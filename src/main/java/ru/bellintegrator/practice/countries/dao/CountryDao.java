@@ -4,7 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import ru.bellintegrator.practice.countries.model.Country;
 
 /**
- * {@inheritDoc}
+ * Dao to work with Country
  */
 public interface CountryDao extends JpaRepository<Country, Long> {
 }
