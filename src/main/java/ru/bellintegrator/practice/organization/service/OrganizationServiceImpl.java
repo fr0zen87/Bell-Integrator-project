@@ -8,9 +8,8 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.organization.dao.OrganizationDao;
-import ru.bellintegrator.practice.organization.model.Organization;
+import ru.bellintegrator.practice.organization.views.ResponseView;
 import ru.bellintegrator.practice.organization.views.OrganizationView;
-import ru.bellintegrator.practice.organization.views.RequestView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +29,10 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrganizationView> list(RequestView view) {
-        List<OrganizationView> organizationViews = new ArrayList<>();
+    public List<ResponseView> list(OrganizationView view) {
+        List<ResponseView> organizationViews = new ArrayList<>();
         dao.list(view).forEach(organization -> {
-            OrganizationView organizationView = new OrganizationView();
+            ResponseView organizationView = new ResponseView();
             organizationView.setId(organization.getId());
             organizationView.setName(organization.getName());
             organizationView.setActive(organization.isActive());
@@ -45,21 +44,21 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public Organization loadById(Long id) {
-        Organization result = dao.loadById(id);
-        log.debug(result.toString());
-        return result;
+    public OrganizationView loadById(Long id) {
+        OrganizationView view = new OrganizationView(dao.loadById(id));
+        log.debug(view.toString());
+        return view;
     }
 
     @Override
     @Transactional
-    public void update(RequestView view) {
+    public void update(OrganizationView view) {
         dao.update(view);
     }
 
     @Override
     @Transactional
-    public void save(RequestView view) {
+    public void save(OrganizationView view) {
         dao.save(view);
     }
 

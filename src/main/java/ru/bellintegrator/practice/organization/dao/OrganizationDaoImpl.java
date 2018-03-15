@@ -3,7 +3,7 @@ package ru.bellintegrator.practice.organization.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.practice.organization.model.Organization;
-import ru.bellintegrator.practice.organization.views.RequestView;
+import ru.bellintegrator.practice.organization.views.OrganizationView;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
@@ -24,7 +24,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public List<Organization> list(RequestView view) {
+    public List<Organization> list(OrganizationView view) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = builder.createQuery(Organization.class);
 
@@ -52,15 +52,15 @@ public class OrganizationDaoImpl implements OrganizationDao {
     @Override
     public Organization loadById(Long id) {
         Organization organization = em.find(Organization.class, id);
-        if (organization == null || !organization.isActive()) {
+        if (organization == null) {
             throw new NullPointerException(
-                    String.format("Active organization with id=%s not found", id));
+                    String.format("Organization with id=%s not found", id));
         }
         return organization;
     }
 
     @Override
-    public void update(RequestView view) {
+    public void update(OrganizationView view) {
         Organization org = em.find(Organization.class, view.getId());
         if (org == null) {
             throw new NullPointerException(
@@ -77,7 +77,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
     }
 
     @Override
-    public void save(RequestView view) {
+    public void save(OrganizationView view) {
         CriteriaBuilder builder = em.getCriteriaBuilder();
         CriteriaQuery<Organization> criteriaQuery = builder.createQuery(Organization.class);
 
@@ -100,10 +100,12 @@ public class OrganizationDaoImpl implements OrganizationDao {
             throw new NullPointerException(
                     String.format("Organization with id=%s not found", id));
         }
-        organization.getOffices().forEach(office -> {
-            office.setOrganization(null);
-        });
-        organization.setOffices(null);
+        if (organization.getOffices() != null) {
+            organization.getOffices().forEach(office -> {
+                office.setOrganization(null);
+            });
+            organization.setOffices(null);
+        }
         em.remove(organization);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.office.dao.OfficeDao;
 import ru.bellintegrator.practice.office.model.Office;
+import ru.bellintegrator.practice.office.views.OfficeView;
 
 import java.util.List;
 
@@ -22,24 +23,22 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional (readOnly = true)
-    public List<Office> list(Office office) {
+    public List<Office> list(OfficeView view) {
         return null;
     }
 
     @Override
     @Transactional (readOnly = true)
-    public Office findOfficeById(Long id) {
-        Office result = dao.findOfficeById(id);
-        log.debug(result.toString());
-        return result;
+    public OfficeView findOfficeById(Long id) {
+        OfficeView view = new OfficeView(dao.findOfficeById(id));
+        log.debug(view.toString());
+        return view;
     }
 
     @Override
     @Transactional
-    public Office update(Office office) {
-        Office result = dao.update(office);
-        log.debug(result.toString());
-        return result;
+    public void update(OfficeView view) {
+        dao.update(view);
     }
 
     @Override
@@ -50,7 +49,7 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public void save(Office office) {
-        dao.save(office);
+    public void save(OfficeView view) {
+        dao.save(view);
     }
 }

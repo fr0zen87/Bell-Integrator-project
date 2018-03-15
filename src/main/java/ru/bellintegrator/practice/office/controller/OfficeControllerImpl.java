@@ -1,17 +1,17 @@
 package ru.bellintegrator.practice.office.controller;
 
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.office.service.OfficeService;
+import ru.bellintegrator.practice.office.views.OfficeView;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
-import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/office", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -24,17 +24,17 @@ public class OfficeControllerImpl implements OfficeController {
     }
 
     @Override
-    public Map list(Office office) {
+    public ResponseEntity<Object> list(OfficeView view) {
         return null;
     }
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Map findOfficeById(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> findOfficeById(@PathVariable("id") Long id) {
         try {
-            return Collections.singletonMap("data", officeService.findOfficeById(id));
+            return ResponseEntity.ok().body(Collections.singletonMap("data", officeService.findOfficeById(id)));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
     }
 
@@ -42,12 +42,12 @@ public class OfficeControllerImpl implements OfficeController {
     @RequestMapping(value = "/update",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map update(@RequestBody @NotNull Office office) {
+    public ResponseEntity<Object> update(@RequestBody @NotNull OfficeView view) {
         try {
-            officeService.update(office);
-            return Collections.singletonMap("data", Collections.singletonMap("result","success"));
+            officeService.update(view);
+            return ResponseEntity.ok().body(Collections.singletonMap("data", Collections.singletonMap("result","success")));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
     }
 
@@ -55,12 +55,12 @@ public class OfficeControllerImpl implements OfficeController {
     @RequestMapping(value = "/delete",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map delete(@RequestBody @NotNull Office office) {
+    public ResponseEntity<Object> delete(@RequestBody @NotNull OfficeView view) {
         try {
-            officeService.delete(office.getId());
-            return Collections.singletonMap("data", Collections.singletonMap("result","success"));
+            officeService.delete(view.getId());
+            return ResponseEntity.ok().body(Collections.singletonMap("data", Collections.singletonMap("result","success")));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
     }
 
@@ -68,12 +68,12 @@ public class OfficeControllerImpl implements OfficeController {
     @RequestMapping(value = "/save",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Map save(@RequestBody @NotNull Office office) {
+    public ResponseEntity<Object> save(@RequestBody @NotNull OfficeView view) {
         try {
-            officeService.save(office);
-            return Collections.singletonMap("data", Collections.singletonMap("result","success"));
+            officeService.save(view);
+            return ResponseEntity.ok().body(Collections.singletonMap("data", Collections.singletonMap("result","success")));
         } catch (Exception e) {
-            return Collections.singletonMap("error", e.getCause().getMessage());
+            return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));
         }
     }
 }

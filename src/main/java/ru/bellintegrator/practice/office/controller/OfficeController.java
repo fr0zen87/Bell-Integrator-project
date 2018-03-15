@@ -1,21 +1,20 @@
 package ru.bellintegrator.practice.office.controller;
 
-import ru.bellintegrator.practice.office.model.Office;
-
-import java.util.Map;
+import org.springframework.http.ResponseEntity;
+import ru.bellintegrator.practice.office.views.OfficeView;
 
 /**
  * {@inheritDoc}
  */
 public interface OfficeController {
 
-    Map list(Office office);
+    ResponseEntity<Object> list(OfficeView view);
 
-    Map findOfficeById(Long id);
+    ResponseEntity<Object> findOfficeById(Long id);
 
-    Map update(Office office);
+    ResponseEntity<Object> update(OfficeView view);
 
-    Map delete(Office office);
+    ResponseEntity<Object> delete(OfficeView view);
 
-    Map save(Office office);
+    ResponseEntity<Object> save(OfficeView view);
 }

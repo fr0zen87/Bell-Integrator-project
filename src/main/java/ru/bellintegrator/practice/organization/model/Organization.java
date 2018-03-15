@@ -1,7 +1,7 @@
 package ru.bellintegrator.practice.organization.model;
 
 import ru.bellintegrator.practice.office.model.Office;
-import ru.bellintegrator.practice.organization.views.RequestView;
+import ru.bellintegrator.practice.organization.views.OrganizationView;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -54,7 +54,7 @@ public class Organization {
     public Organization() {
     }
 
-    public Organization(RequestView view) {
+    public Organization(OrganizationView view) {
         this.name = view.getName();
         this.fullName = view.getFullName();
         this.inn = view.getInn();

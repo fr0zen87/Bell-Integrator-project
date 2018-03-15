@@ -1,7 +1,7 @@
 package ru.bellintegrator.practice.organization.dao;
 
 import ru.bellintegrator.practice.organization.model.Organization;
-import ru.bellintegrator.practice.organization.views.RequestView;
+import ru.bellintegrator.practice.organization.views.OrganizationView;
 
 import java.util.List;
 
@@ -10,13 +10,13 @@ import java.util.List;
  */
 public interface OrganizationDao {
 
-    List<Organization> list(RequestView view);
+    List<Organization> list(OrganizationView view);
 
     Organization loadById(Long id);
 
-    void update(RequestView view);
+    void update(OrganizationView view);
 
-    void save(RequestView view);
+    void save(OrganizationView view);
 
     void delete(Long id);
 }

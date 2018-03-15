@@ -1,5 +1,6 @@
 package ru.bellintegrator.practice.office.model;
 
+import ru.bellintegrator.practice.office.views.OfficeView;
 import ru.bellintegrator.practice.user.model.User;
 import ru.bellintegrator.practice.organization.model.Organization;
 
@@ -47,6 +48,16 @@ public class Office {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "office",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<User> users;
+
+    public Office() {
+    }
+
+    public Office(OfficeView view) {
+        this.name = view.getName();
+        this.address = view.getAddress();
+        this.phone = view.getPhone();
+        this.isActive = view.getActive();
+    }
 
     public Long getId() {
         return id;
