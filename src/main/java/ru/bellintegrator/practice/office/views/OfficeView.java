@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import ru.bellintegrator.practice.office.model.Office;
 
+/**
+ * An office view
+ */
 public class OfficeView {
 
     private Long id;

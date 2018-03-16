@@ -12,7 +12,7 @@ public interface OrganizationDao {
 
     /**
      * @param view - filter to find organizations
-     * @return organizations founded by view
+     * @return organizations founded by filter
      */
     List<Organization> list(OrganizationView view);
 

@@ -17,34 +17,61 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import java.util.List;
 
+/**
+ * Entity class for office table
+ */
 @Entity
 @Table(name = "office")
 public class Office {
 
+    /**
+     * Primary key
+     */
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
 
+    /**
+     * Hibernate specified field
+     */
     @Version
     private Integer version;
 
+    /**
+     * Office name
+     */
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
+    /**
+     * Office address
+     */
     @Column(name = "address", nullable = false)
     private String address;
 
+    /**
+     * Office phone
+     */
     @Column(name = "phone", length = 12)
     private String phone;
 
+    /**
+     * Field to show active or inactive status of office
+     */
     @Column(name = "is_active")
     private Boolean isActive;
 
+    /**
+     * Organization in which the office is attached
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "organization_id")
     private Organization organization;
 
+    /**
+     * List of users working in office
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "office",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<User> users;

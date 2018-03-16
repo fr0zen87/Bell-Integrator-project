@@ -13,6 +13,9 @@ import ru.bellintegrator.practice.office.views.OfficeView;
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
 
+/**
+ * {@inheritDoc}
+ */
 @RestController
 @RequestMapping(value = "/api/office", produces = MediaType.APPLICATION_JSON_VALUE)
 public class OfficeControllerImpl implements OfficeController {
@@ -24,7 +27,10 @@ public class OfficeControllerImpl implements OfficeController {
     }
 
     @Override
-    public ResponseEntity<Object> list(OfficeView view) {
+    @RequestMapping(value = "/list/{id}",
+            method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Object> list(@RequestBody OfficeView view) {
         return null;
     }
 

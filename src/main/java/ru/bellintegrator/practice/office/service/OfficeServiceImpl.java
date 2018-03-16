@@ -10,6 +10,9 @@ import ru.bellintegrator.practice.office.views.OfficeView;
 
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 public class OfficeServiceImpl implements OfficeService {
 
