@@ -1,11 +1,11 @@
 package ru.bellintegrator.practice.office.dao;
 
 import ru.bellintegrator.practice.office.model.Office;
-import ru.bellintegrator.practice.office.views.requests.OfficeFilter;
 import ru.bellintegrator.practice.office.views.requests.OfficeSaveRequest;
 import ru.bellintegrator.practice.office.views.requests.OfficeUpdateRequest;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Dao to work with office
@@ -13,10 +13,10 @@ import java.util.List;
 public interface OfficeDao {
 
     /**
-     * @param filter - filter to find offices
-     * @return offices founded by filter
+     * @param filters - filters to find offices
+     * @return offices founded by filters
      */
-    List<Office> list(OfficeFilter filter);
+    List<Office> list(Map<String, Object> filters);
 
     /**
      * @param id - office primary key

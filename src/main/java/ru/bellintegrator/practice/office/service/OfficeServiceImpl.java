@@ -7,11 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.office.dao.OfficeDao;
 import ru.bellintegrator.practice.office.views.responces.OfficeListView;
 import ru.bellintegrator.practice.office.views.responces.OfficeView;
-import ru.bellintegrator.practice.office.views.requests.OfficeFilter;
 import ru.bellintegrator.practice.office.views.requests.OfficeSaveRequest;
 import ru.bellintegrator.practice.office.views.requests.OfficeUpdateRequest;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * {@inheritDoc}
@@ -29,9 +30,17 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional (readOnly = true)
-    public List<OfficeListView> list(OfficeFilter filter) {
-        // TODO: 16.03.2018 add filter
-        return null;
+    public List<OfficeListView> list(Map<String, Object> filters) {
+        List<OfficeListView> officeViews = new ArrayList<>();
+        dao.list(filters).forEach(office -> {
+            OfficeListView view = new OfficeListView();
+            view.setId(office.getId());
+            view.setName(office.getName());
+            view.setActive(office.isActive());
+            log.debug(view.toString());
+            officeViews.add(view);
+        });
+        return officeViews;
     }
 
     @Override

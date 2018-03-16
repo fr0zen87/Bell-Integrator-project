@@ -3,7 +3,6 @@ package ru.bellintegrator.practice.office.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.practice.office.model.Office;
-import ru.bellintegrator.practice.office.views.requests.OfficeFilter;
 import ru.bellintegrator.practice.office.views.requests.OfficeSaveRequest;
 import ru.bellintegrator.practice.office.views.requests.OfficeUpdateRequest;
 import ru.bellintegrator.practice.organization.model.Organization;
@@ -15,6 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.Map;
 
 /**
  * {@inheritDoc}
@@ -30,9 +30,15 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public List<Office> list(OfficeFilter filter) {
-        // TODO: 09.03.2018 add filter
-        return null;
+    public List<Office> list(Map<String, Object> filters) {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT o FROM Office o WHERE");
+        filters.forEach((key, value) -> sb.append(String.format(" o.%s = '%s' AND", key, value)));
+
+        TypedQuery<Office> query = em.createQuery(sb.substring(0, sb.length() - 4), Office.class);
+
+        return query.getResultList();
     }
 
     @Override
