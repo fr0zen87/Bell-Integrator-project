@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.organization.views;
+package ru.bellintegrator.practice.organization.views.responces;
 
 /**
  * List of organizations view

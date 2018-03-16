@@ -1,7 +1,10 @@
 package ru.bellintegrator.practice.organization.service;
 
-import ru.bellintegrator.practice.organization.views.OrganizationListView;
-import ru.bellintegrator.practice.organization.views.OrganizationView;
+import ru.bellintegrator.practice.organization.views.responces.OrganizationListView;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationFilter;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationSaveRequest;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationUpdateRequest;
+import ru.bellintegrator.practice.organization.views.responces.OrganizationView;
 
 import java.util.List;
 
@@ -11,10 +14,10 @@ import java.util.List;
 public interface OrganizationService {
 
     /**
-     * @param view - filter parameter
+     * @param filter - filter parameter
      * @return list of organizations
      */
-    List<OrganizationListView> list(OrganizationView view);
+    List<OrganizationListView> list(OrganizationFilter filter);
 
     /**
      * @param id - primary key of organization
@@ -23,14 +26,14 @@ public interface OrganizationService {
     OrganizationView loadById(Long id);
 
     /**
-     * @param view - organization to update
+     * @param update - organization to update
      */
-    void update(OrganizationView view);
+    void update(OrganizationUpdateRequest update);
 
     /**
-     * @param view - organization to save
+     * @param save - organization to save
      */
-    void save(OrganizationView view);
+    void save(OrganizationSaveRequest save);
 
     /**
      * @param id - primary key of organization to delete

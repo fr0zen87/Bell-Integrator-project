@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.organization.views;
+package ru.bellintegrator.practice.organization.views.responces;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;

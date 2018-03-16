@@ -1,7 +1,9 @@
 package ru.bellintegrator.practice.organization.dao;
 
 import ru.bellintegrator.practice.organization.model.Organization;
-import ru.bellintegrator.practice.organization.views.OrganizationView;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationFilter;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationSaveRequest;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationUpdateRequest;
 
 import java.util.List;
 
@@ -11,10 +13,10 @@ import java.util.List;
 public interface OrganizationDao {
 
     /**
-     * @param view - filter to find organizations
+     * @param filter - filter to find organizations
      * @return organizations founded by filter
      */
-    List<Organization> list(OrganizationView view);
+    List<Organization> list(OrganizationFilter filter);
 
     /**
      * @param id - organization primary key
@@ -23,14 +25,14 @@ public interface OrganizationDao {
     Organization loadById(Long id);
 
     /**
-     * @param view - organization to update
+     * @param update - organization to update
      */
-    void update(OrganizationView view);
+    void update(OrganizationUpdateRequest update);
 
     /**
-     * @param view - organization to save
+     * @param save - organization to save
      */
-    void save(OrganizationView view);
+    void save(OrganizationSaveRequest save);
 
     /**
      * @param id - organization primary key

@@ -1,7 +1,7 @@
 package ru.bellintegrator.practice.organization.model;
 
 import ru.bellintegrator.practice.office.model.Office;
-import ru.bellintegrator.practice.organization.views.OrganizationView;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationSaveRequest;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -87,14 +87,14 @@ public class Organization {
     public Organization() {
     }
 
-    public Organization(OrganizationView view) {
-        this.name = view.getName();
-        this.fullName = view.getFullName();
-        this.inn = view.getInn();
-        this.kpp = view.getKpp();
-        this.address = view.getAddress();
-        this.phone = view.getPhone();
-        this.isActive = view.getActive();
+    public Organization(OrganizationSaveRequest save) {
+        this.name = save.getName();
+        this.fullName = save.getFullName();
+        this.inn = save.getInn();
+        this.kpp = save.getKpp();
+        this.address = save.getAddress();
+        this.phone = save.getPhone();
+        this.isActive = save.getActive();
     }
 
     public Long getId() {

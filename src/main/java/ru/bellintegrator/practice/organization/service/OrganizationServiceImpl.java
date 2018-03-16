@@ -8,8 +8,11 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.organization.dao.OrganizationDao;
-import ru.bellintegrator.practice.organization.views.OrganizationListView;
-import ru.bellintegrator.practice.organization.views.OrganizationView;
+import ru.bellintegrator.practice.organization.views.responces.OrganizationListView;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationFilter;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationSaveRequest;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationUpdateRequest;
+import ru.bellintegrator.practice.organization.views.responces.OrganizationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +35,9 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<OrganizationListView> list(OrganizationView view) {
+    public List<OrganizationListView> list(OrganizationFilter filter) {
         List<OrganizationListView> organizationViews = new ArrayList<>();
-        dao.list(view).forEach(organization -> {
+        dao.list(filter).forEach(organization -> {
             OrganizationListView organizationView = new OrganizationListView();
             organizationView.setId(organization.getId());
             organizationView.setName(organization.getName());
@@ -55,14 +58,14 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional
-    public void update(OrganizationView view) {
-        dao.update(view);
+    public void update(OrganizationUpdateRequest update) {
+        dao.update(update);
     }
 
     @Override
     @Transactional
-    public void save(OrganizationView view) {
-        dao.save(view);
+    public void save(OrganizationSaveRequest save) {
+        dao.save(save);
     }
 
     @Override
