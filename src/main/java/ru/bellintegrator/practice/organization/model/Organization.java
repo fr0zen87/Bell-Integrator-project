@@ -174,18 +174,4 @@ public class Organization {
         getOffices().remove(office);
         office.setOrganization(null);
     }
-
-    @Override
-    public String toString() {
-        return "Organization{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", fullName='" + fullName + '\'' +
-                ", inn='" + inn + '\'' +
-                ", kpp='" + kpp + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + (phone != null ? phone : "") + '\'' +
-                ", isActive=" + isActive +
-                '}';
-    }
 }

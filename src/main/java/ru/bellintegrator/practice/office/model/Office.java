@@ -1,6 +1,6 @@
 package ru.bellintegrator.practice.office.model;
 
-import ru.bellintegrator.practice.office.views.OfficeView;
+import ru.bellintegrator.practice.office.views.requests.OfficeSaveRequest;
 import ru.bellintegrator.practice.user.model.User;
 import ru.bellintegrator.practice.organization.model.Organization;
 
@@ -79,11 +79,11 @@ public class Office {
     public Office() {
     }
 
-    public Office(OfficeView view) {
-        this.name = view.getName();
-        this.address = view.getAddress();
-        this.phone = view.getPhone();
-        this.isActive = view.getActive();
+    public Office(OfficeSaveRequest save) {
+        this.name = save.getName();
+        this.address = save.getAddress();
+        this.phone = save.getPhone();
+        this.isActive = save.getActive();
     }
 
     public Long getId() {
@@ -128,16 +128,5 @@ public class Office {
 
     public void setOrganization(Organization organization) {
         this.organization = organization;
-    }
-
-    @Override
-    public String toString() {
-        return "Office{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", phone='" + (phone != null ? phone : "") + '\'' +
-                ", isActive=" + (isActive != null ? isActive : "") +
-                '}';
     }
 }

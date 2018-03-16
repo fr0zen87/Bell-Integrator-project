@@ -5,8 +5,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.office.dao.OfficeDao;
-import ru.bellintegrator.practice.office.model.Office;
-import ru.bellintegrator.practice.office.views.OfficeView;
+import ru.bellintegrator.practice.office.views.responces.OfficeListView;
+import ru.bellintegrator.practice.office.views.responces.OfficeView;
+import ru.bellintegrator.practice.office.views.requests.OfficeFilter;
+import ru.bellintegrator.practice.office.views.requests.OfficeSaveRequest;
+import ru.bellintegrator.practice.office.views.requests.OfficeUpdateRequest;
 
 import java.util.List;
 
@@ -26,7 +29,8 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional (readOnly = true)
-    public List<Office> list(OfficeView view) {
+    public List<OfficeListView> list(OfficeFilter filter) {
+        // TODO: 16.03.2018 add filter
         return null;
     }
 
@@ -40,8 +44,8 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public void update(OfficeView view) {
-        dao.update(view);
+    public void update(OfficeUpdateRequest update) {
+        dao.update(update);
     }
 
     @Override
@@ -52,7 +56,7 @@ public class OfficeServiceImpl implements OfficeService {
 
     @Override
     @Transactional
-    public void save(OfficeView view) {
-        dao.save(view);
+    public void save(OfficeSaveRequest save) {
+        dao.save(save);
     }
 }
