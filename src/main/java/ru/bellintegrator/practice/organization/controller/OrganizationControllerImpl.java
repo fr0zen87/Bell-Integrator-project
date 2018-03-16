@@ -14,6 +14,9 @@ import ru.bellintegrator.practice.organization.views.OrganizationView;
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
 
+/**
+ * {@inheritDoc}
+ */
 @RestController
 @RequestMapping(value = "/api/organization", produces = MediaType.APPLICATION_JSON_VALUE)
 public class OrganizationControllerImpl implements OrganizationController {

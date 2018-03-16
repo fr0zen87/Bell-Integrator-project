@@ -13,6 +13,9 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Repository
 public class OrganizationDaoImpl implements OrganizationDao {
 
@@ -101,9 +104,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
                     String.format("Organization with id=%s not found", id));
         }
         if (organization.getOffices() != null) {
-            organization.getOffices().forEach(office -> {
-                office.setOrganization(null);
-            });
+            organization.getOffices().forEach(office -> office.setOrganization(null));
             organization.setOffices(null);
         }
         em.remove(organization);

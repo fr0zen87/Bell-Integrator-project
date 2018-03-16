@@ -8,12 +8,15 @@ import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.organization.dao.OrganizationDao;
-import ru.bellintegrator.practice.organization.views.ResponseView;
+import ru.bellintegrator.practice.organization.views.OrganizationListView;
 import ru.bellintegrator.practice.organization.views.OrganizationView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@inheritDoc}
+ */
 @Service
 @Scope(proxyMode = ScopedProxyMode.INTERFACES)
 public class OrganizationServiceImpl implements OrganizationService {
@@ -29,10 +32,10 @@ public class OrganizationServiceImpl implements OrganizationService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<ResponseView> list(OrganizationView view) {
-        List<ResponseView> organizationViews = new ArrayList<>();
+    public List<OrganizationListView> list(OrganizationView view) {
+        List<OrganizationListView> organizationViews = new ArrayList<>();
         dao.list(view).forEach(organization -> {
-            ResponseView organizationView = new ResponseView();
+            OrganizationListView organizationView = new OrganizationListView();
             organizationView.setId(organization.getId());
             organizationView.setName(organization.getName());
             organizationView.setActive(organization.isActive());

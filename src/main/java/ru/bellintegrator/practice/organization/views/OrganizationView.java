@@ -5,6 +5,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import ru.bellintegrator.practice.organization.model.Organization;
 
+/**
+ * An organization view
+ */
 public class OrganizationView {
 
     private Long id;

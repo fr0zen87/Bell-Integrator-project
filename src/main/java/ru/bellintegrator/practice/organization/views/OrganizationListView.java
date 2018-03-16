@@ -1,6 +1,9 @@
 package ru.bellintegrator.practice.organization.views;
 
-public class ResponseView {
+/**
+ * List of organizations view
+ */
+public class OrganizationListView {
 
     private Long id;
 
@@ -34,7 +37,7 @@ public class ResponseView {
 
     @Override
     public String toString() {
-        return "ResponseView{" +
+        return "OrganizationListView{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", isActive=" + isActive +

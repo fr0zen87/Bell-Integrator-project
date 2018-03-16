@@ -14,39 +14,72 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import java.util.List;
 
+/**
+ * Entity class for organization table
+ */
 @Entity
 @Table(name = "organization")
 public class Organization {
 
+    /**
+     * Primary key
+     */
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
 
+    /**
+     * Hibernate specified field
+     */
     @Version
     private Integer version;
 
+    /**
+     * Organization short name
+     */
     @Column(name = "name", length = 50, nullable = false)
     private String name;
 
+    /**
+     * Organization full name
+     */
     @Column(name = "full_name", nullable = false, unique = true)
     private String fullName;
 
+    /**
+     * Organization INN
+     */
     @Column(name = "inn", length = 12, nullable = false)
     private String inn;
 
+    /**
+     * Organization KPP
+     */
     @Column(name = "kpp", length = 9, nullable = false)
     private String kpp;
 
+    /**
+     * Organization address
+     */
     @Column(name = "address", nullable = false)
     private String address;
 
+    /**
+     * Organization phone
+     */
     @Column(name = "phone", length = 12)
     private String phone;
 
+    /**
+     * Field to show active or inactive status of organization
+     */
     @Column(name = "is_active")
     private Boolean isActive;
 
+    /**
+     * List of all offices in an organization
+     */
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "organization",
             cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<Office> offices;
