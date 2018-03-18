@@ -68,15 +68,6 @@ public class User {
     @JoinColumn(name = "office_id")
     private Office office;
 
-    @Column(name = "username", nullable = false)
-    private String username;
-
-    @Column(name = "password", nullable = false)
-    private String password;
-
-    @Column(name = "nickname", nullable = false)
-    private String nickname;
-
     public Long getId() {
         return id;
     }
@@ -183,29 +174,5 @@ public class User {
 
     public void setOffice(Office office) {
         this.office = office;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
     }
 }

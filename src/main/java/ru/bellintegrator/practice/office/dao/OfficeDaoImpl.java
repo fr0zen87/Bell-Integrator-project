@@ -82,7 +82,8 @@ public class OfficeDaoImpl implements OfficeDao {
         CriteriaQuery<Office> criteriaQuery = builder.createQuery(Office.class);
 
         Root<Office> office = criteriaQuery.from(Office.class);
-        criteriaQuery.where(builder.equal(office.get("name"), save.getName()));
+        criteriaQuery.where(builder.equal(office.get("name"), save.getName()),
+                builder.equal(office.get("organization"), save.getOrgId()));
 
         TypedQuery<Office> query = em.createQuery(criteriaQuery);
         if (query.getResultList().size() != 0) {

@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS organization (
     version INTEGER NOT NULL,
     name VARCHAR(50) NOT NULL,
     full_name VARCHAR(255) NOT NULL UNIQUE,
-    inn CHAR(12) NOT NULL,
+    inn CHAR(10) NOT NULL,
     kpp CHAR(9) NOT NULL,
     address VARCHAR(255) NOT NULL,
     phone CHAR(12),
@@ -54,10 +54,16 @@ CREATE TABLE IF NOT EXISTS user (
     citizenship_name VARCHAR(255) NOT NULL,
     citizenship_code CHAR(3) NOT NULL,
     is_identified BIT DEFAULT FALSE,
-    office_id INTEGER,
+    office_id INTEGER
+);
+
+-- Table for Account
+CREATE TABLE IF NOT EXISTS account (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    version INTEGER NOT NULL,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    nickname VARCHAR(255) NOT NULL
+    name VARCHAR(20) NOT NULL
 );
 
 CREATE INDEX IX_Office_Organization_Id ON Office (organization_id);

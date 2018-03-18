@@ -50,7 +50,7 @@ public class Organization {
     /**
      * Organization INN
      */
-    @Column(name = "inn", length = 12, nullable = false)
+    @Column(name = "inn", length = 10, nullable = false)
     private String inn;
 
     /**
