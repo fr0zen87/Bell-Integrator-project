@@ -12,8 +12,8 @@ import javax.validation.constraints.Size;
  */
 public class OrganizationFilter {
 
-    @NotNull(message = "name must not be null")
-    @Size(max = 50, message = "name length must be equals or less than 50")
+    @NotNull(message = "name is required")
+    @Size(max = 50, message = "name length must be equals or less than 50 symbols")
     private String name;
 
     @Digits(integer = 10, fraction = 0, message = "only digits are available in inn")

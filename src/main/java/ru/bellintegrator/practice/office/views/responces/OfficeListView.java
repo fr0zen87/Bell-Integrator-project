@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.office.views.responces;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
 /**
@@ -12,6 +13,7 @@ public class OfficeListView {
 
     private String name;
 
+    @JsonProperty(value = "isActive")
     private Boolean isActive;
 
     public Long getId() {

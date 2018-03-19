@@ -13,24 +13,24 @@ import javax.validation.constraints.Size;
  */
 public class OfficeSaveRequest {
 
-    @NotNull(message = "name must not be null")
-    @Size(max = 50, message = "name length must be less than 50")
+    @NotNull(message = "name is required")
+    @Size(max = 50, message = "name length must be equals or less than 50 symbols")
     private String name;
 
-    @NotNull(message = "address must not be null")
-    @Size(max = 255, message = "address length must be less than 255")
+    @NotNull(message = "address is required")
+    @Size(max = 255, message = "address length must be equals or less than 255 symbols")
     private String address;
 
-    @NotNull(message = "phone must not be null")
+    @NotNull(message = "phone is required")
     @Digits(integer = 12, fraction = 0, message = "only digits are available in phone")
     @Size(max = 12, message = "phone length must be less than 12")
     private String phone;
 
-    @NotNull(message = "isActive must not be null")
+    @NotNull(message = "isActive is required")
     @JsonProperty(value = "isActive")
     private Boolean isActive;
 
-    @NotNull(message = "orgId must not be null")
+    @NotNull(message = "orgId is required")
     @Min(value = 1, message = "orgId must be more than 0")
     private Long orgId;
 

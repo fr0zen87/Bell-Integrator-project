@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
  */
 public class OfficeDeleteRequest {
 
-    @NotNull(message = "id must not be null")
+    @NotNull(message = "id is required")
     @Min(value = 1, message = "id must be more than 0")
     private Long id;
 

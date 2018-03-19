@@ -100,9 +100,9 @@ public class OrganizationControllerImpl implements OrganizationController {
     @RequestMapping(value = "/delete",
             method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Object> delete(@RequestBody @Valid OrganizationDeleteRequest id) {
+    public ResponseEntity<Object> delete(@RequestBody @Valid OrganizationDeleteRequest delete) {
         try {
-            organizationService.delete(id.getId());
+            organizationService.delete(delete.getId());
             return ResponseEntity.ok().body(Collections.singletonMap("data", Collections.singletonMap("result","success")));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(Collections.singletonMap("error", e.getMessage()));

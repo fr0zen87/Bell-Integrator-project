@@ -32,12 +32,7 @@ import java.util.Locale;
 @EnableSwagger2
 @ImportResource("spring_mvc_config.xml")
 @SpringBootApplication
-@ComponentScan(basePackageClasses = {
-        DocTypeControllerImpl.class, DocTypeServiceImpl.class,
-        CountryControllerImpl.class, CountryServiceImpl.class,
-        OrganizationControllerImpl.class, OrganizationServiceImpl.class, OrganizationDaoImpl.class,
-        OfficeControllerImpl.class, OfficeServiceImpl.class, OfficeDaoImpl.class
-})
+@ComponentScan(basePackages = {"ru.bellintegrator.practice"})
 public class Application {
 
     public static void main(String[] args) {
