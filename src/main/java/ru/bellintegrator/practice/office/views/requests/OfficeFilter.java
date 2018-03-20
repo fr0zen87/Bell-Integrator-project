@@ -17,7 +17,7 @@ public class OfficeFilter {
     @Min(value = 1, message = "orgId must be more than 0")
     private Long orgId;
 
-    @Size(max = 50, message = "name length must be equals or  less than 50 symbols")
+    @Size(max = 50, message = "name length must be equals or less than 50 symbols")
     private String name;
 
     @Digits(integer = 12, fraction = 0, message = "only digits are available in phone")

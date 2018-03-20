@@ -10,8 +10,6 @@ public class OfficeFilterHelper {
 
         if (filter.getOrgId() != null) {
             filters.put("organization", filter.getOrgId());
-        } else {
-            throw new NullPointerException("orgId is required");
         }
         if (filter.getName() != null) {
             filters.put("name", filter.getName());
