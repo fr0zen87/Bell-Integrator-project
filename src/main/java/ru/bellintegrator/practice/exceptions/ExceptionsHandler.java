@@ -25,7 +25,7 @@ public class ExceptionsHandler {
     @ExceptionHandler({Exception.class})
     public ResponseEntity<Object> handleException(Exception exception) {
 
-        String errorMsg = exception.getCause().getMessage() == null ?
+        String errorMsg = exception.getCause() == null ?
                 exception.getMessage() :
                 exception.getCause().getMessage();
 

@@ -43,8 +43,9 @@ public class OfficeControllerImpl implements OfficeController {
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Object> findOfficeById(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> findOfficeById(@PathVariable("id") Long id) throws Exception {
 
+        if (id < 1) throw new Exception("id must be greater than 0");
         return ResponseEntity.ok().body(Collections.singletonMap("data", officeService.findOfficeById(id)));
     }
 

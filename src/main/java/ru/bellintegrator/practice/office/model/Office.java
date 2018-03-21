@@ -114,19 +114,37 @@ public class Office {
         this.phone = phone;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean active) {
-        isActive = active;
-    }
-
     public Organization getOrganization() {
         return organization;
     }
 
     public void setOrganization(Organization organization) {
         this.organization = organization;
+    }
+
+    public Boolean getActive() {
+        return isActive;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
+    public void addUser(User user) {
+        getUsers().add(user);
+        user.setOffice(this);
+    }
+
+    public void removeUser(User user) {
+        getUsers().remove(user);
+        user.setOffice(null);
     }
 }

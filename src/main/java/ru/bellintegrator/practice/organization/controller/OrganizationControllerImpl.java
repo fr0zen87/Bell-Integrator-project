@@ -42,8 +42,9 @@ public class OrganizationControllerImpl implements OrganizationController {
 
     @Override
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Object> loadById(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> loadById(@PathVariable("id") Long id) throws Exception {
 
+        if (id < 1) throw new Exception("id must be greater than 0");
         return ResponseEntity.ok(Collections.singletonMap("data", organizationService.loadById(id)));
     }
 

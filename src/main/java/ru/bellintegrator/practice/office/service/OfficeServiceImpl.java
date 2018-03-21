@@ -36,7 +36,7 @@ public class OfficeServiceImpl implements OfficeService {
             OfficeListView view = new OfficeListView();
             view.setId(office.getId());
             view.setName(office.getName());
-            view.setActive(office.isActive());
+            view.setActive(office.getActive());
             log.debug(view.toString());
             officeViews.add(view);
         });

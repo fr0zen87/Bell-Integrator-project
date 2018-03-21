@@ -19,7 +19,7 @@ public interface OfficeController {
     /**
      * Find office by id
      */
-    ResponseEntity<Object> findOfficeById(Long id);
+    ResponseEntity<Object> findOfficeById(Long id) throws Exception;
 
     /**
      * Update office

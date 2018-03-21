@@ -1,5 +1,7 @@
 package ru.bellintegrator.practice.user.model;
 
+import ru.bellintegrator.practice.countries.model.Country;
+import ru.bellintegrator.practice.documents.model.DocType;
 import ru.bellintegrator.practice.office.model.Office;
 
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,36 +36,32 @@ public class User {
     @Column(name = "second_name", length = 20, nullable = false)
     private String secondName;
 
-    @Column(name = "middleName", length = 20)
+    @Column(name = "middle_name", length = 20, nullable = false)
     private String middleName;
 
     @Column(name = "position", nullable = false)
     private String position;
 
-    @Column(name = "phone", length = 12)
+    @Column(name = "phone", length = 12, nullable = false)
     private String phone;
 
-    @Column(name = "document_code", length = 2, nullable = false)
-    private String documentCode;
+    @OneToOne
+    @JoinColumn(name = "doc_type_id")
+    private DocType docType;
 
-    @Column(name = "document_name", nullable = false)
-    private String documentName;
-
-    @Column(name = "document_number", nullable = false)
-    private int documentNumber;
+    @Column(name = "document_number", length = 20, nullable = false)
+    private String documentNumber;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "document_date", nullable = false)
     private Date documentDate;
 
-    @Column(name = "citizenship_name", nullable = false)
-    private String citizenshipName;
-
-    @Column(name = "citizenship_code", length = 3, nullable = false)
-    private String citizenshipCode;
+    @OneToOne
+    @JoinColumn(name = "country_id")
+    private Country country;
 
     @Column(name = "is_identified")
-    private boolean isIdentified;
+    private Boolean isIdentified;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id")
@@ -112,27 +111,11 @@ public class User {
         this.phone = phone;
     }
 
-    public String getDocumentCode() {
-        return documentCode;
-    }
-
-    public void setDocumentCode(String documentCode) {
-        this.documentCode = documentCode;
-    }
-
-    public String getDocumentName() {
-        return documentName;
-    }
-
-    public void setDocumentName(String documentName) {
-        this.documentName = documentName;
-    }
-
-    public int getDocumentNumber() {
+    public String getDocumentNumber() {
         return documentNumber;
     }
 
-    public void setDocumentNumber(int documentNumber) {
+    public void setDocumentNumber(String documentNumber) {
         this.documentNumber = documentNumber;
     }
 
@@ -144,27 +127,11 @@ public class User {
         this.documentDate = documentDate;
     }
 
-    public String getCitizenshipName() {
-        return citizenshipName;
-    }
-
-    public void setCitizenshipName(String citizenshipName) {
-        this.citizenshipName = citizenshipName;
-    }
-
-    public String getCitizenshipCode() {
-        return citizenshipCode;
-    }
-
-    public void setCitizenshipCode(String citizenshipCode) {
-        this.citizenshipCode = citizenshipCode;
-    }
-
-    public boolean isIdentified() {
+    public Boolean getIdentified() {
         return isIdentified;
     }
 
-    public void setIdentified(boolean identified) {
+    public void setIdentified(Boolean identified) {
         isIdentified = identified;
     }
 
@@ -174,5 +141,21 @@ public class User {
 
     public void setOffice(Office office) {
         this.office = office;
+    }
+
+    public DocType getDocType() {
+        return docType;
+    }
+
+    public void setDocType(DocType docType) {
+        this.docType = docType;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

@@ -19,7 +19,7 @@ public interface OrganizationController {
     /**
      * Find organization by id
      */
-    ResponseEntity<Object> loadById(Long id);
+    ResponseEntity<Object> loadById(Long id) throws Exception;
 
     /**
      * Update organization

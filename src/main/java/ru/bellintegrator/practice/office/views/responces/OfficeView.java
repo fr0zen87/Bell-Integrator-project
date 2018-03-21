@@ -29,7 +29,7 @@ public class OfficeView {
         this.name = office.getName();
         this.address = office.getAddress();
         this.phone = office.getPhone();
-        this.isActive = office.isActive();
+        this.isActive = office.getActive();
     }
 
     public Long getId() {
