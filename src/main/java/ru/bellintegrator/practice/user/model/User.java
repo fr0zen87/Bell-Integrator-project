@@ -3,6 +3,7 @@ package ru.bellintegrator.practice.user.model;
 import ru.bellintegrator.practice.countries.model.Country;
 import ru.bellintegrator.practice.documents.model.DocType;
 import ru.bellintegrator.practice.office.model.Office;
+import ru.bellintegrator.practice.user.views.requests.UserSaveRequest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -66,6 +67,22 @@ public class User {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id")
     private Office office;
+
+    public User() {
+    }
+
+    public User(UserSaveRequest save, DocType docType, Country country) {
+        this.firstName = save.getFirstName();
+        this.secondName = save.getSecondName();
+        this.middleName = save.getMiddleName();
+        this.position = save.getPosition();
+        this.phone = save.getPhone();
+        this.docType = docType;
+        this.documentNumber = save.getDocNumber();
+        this.documentDate = save.getDocDate();
+        this.country = country;
+        this.isIdentified = save.getIdentified();
+    }
 
     public Long getId() {
         return id;

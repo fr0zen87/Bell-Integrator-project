@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
@@ -64,7 +65,11 @@ public class UserSaveRequest {
 
     @NotNull(message = "isIdentified is required")
     @JsonProperty(value = "isIdentified")
-    private boolean isIdentified;
+    private Boolean isIdentified;
+
+    @NotNull(message = "officeId is required")
+    @Min(value = 1, message = "officeId must be more than 0")
+    private Long officeId;
 
     public String getFirstName() {
         return firstName;
@@ -111,7 +116,11 @@ public class UserSaveRequest {
     }
 
     @JsonGetter(value = "isIdentified")
-    public boolean isIdentified() {
+    public Boolean getIdentified() {
         return isIdentified;
+    }
+
+    public Long getOfficeId() {
+        return officeId;
     }
 }
