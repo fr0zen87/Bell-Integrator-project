@@ -4,12 +4,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.practice.countries.model.Country;
 import ru.bellintegrator.practice.documents.model.DocType;
+import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.user.model.User;
 import ru.bellintegrator.practice.user.views.requests.UserSaveRequest;
 import ru.bellintegrator.practice.user.views.requests.UserUpdateRequest;
 
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +62,9 @@ public class UserDaoImpl implements UserDao {
             throw new NullPointerException(
                     String.format("User with id=%s not found", update.getId()));
         }
+        if (user.getDocumentNumber().equals(update.getDocNumber())) {
+            throw new EntityExistsException("User with such docNumber already exists");
+        }
 
         DocType docType = findDocType(update.getDocName(), update.getDocCode());
         Country country = findCountry(update.getCitizenshipName(), update.getCitizenshipCode());
@@ -87,7 +95,31 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void save(UserSaveRequest save) {
-        // TODO: 21.03.2018 add realization
+        CriteriaBuilder builder = em.getCriteriaBuilder();
+        CriteriaQuery<User> criteriaQuery = builder.createQuery(User.class);
+
+        Root<User> user = criteriaQuery.from(User.class);
+        criteriaQuery.where(builder.equal(user.get("documentNumber"), save.getDocNumber()));
+
+        TypedQuery<User> query = em.createQuery(criteriaQuery);
+        if (query.getResultList().size() != 0) {
+            throw new EntityExistsException("User with such docNumber already exists");
+        }
+
+        Long officeId = save.getOfficeId();
+        Office office = em.find(Office.class, officeId);
+        if (office == null) {
+            throw new NullPointerException(
+                    String.format("Office with id=%s not found", officeId));
+        }
+
+        DocType docType = findDocType(save.getDocName(), save.getDocCode());
+        Country country = findCountry(save.getCitizenshipName(), save.getCitizenshipCode());
+
+        User userToPersist = new User(save, docType, country);
+        office.addUser(userToPersist);
+
+        em.persist(userToPersist);
     }
 
     private DocType findDocType(String name, String code) {
