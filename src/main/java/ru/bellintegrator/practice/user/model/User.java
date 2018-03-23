@@ -19,51 +19,93 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 import java.util.Date;
 
+/**
+ * Entity class for user table
+ */
 @Entity
 @Table(name = "user")
 public class User {
 
+    /**
+     * Primary key
+     */
     @Id
     @GeneratedValue
     @Column(name = "id")
     private Long id;
 
+    /**
+     * Hibernate specified field
+     */
     @Version
     private int version;
 
+    /**
+     * User first name
+     */
     @Column(name = "first_name", length = 20, nullable = false)
     private String firstName;
 
+    /**
+     * User second name
+     */
     @Column(name = "second_name", length = 20, nullable = false)
     private String secondName;
 
+    /**
+     * User middle name
+     */
     @Column(name = "middle_name", length = 20, nullable = false)
     private String middleName;
 
+    /**
+     * User position
+     */
     @Column(name = "position", nullable = false)
     private String position;
 
+    /**
+     * User phone
+     */
     @Column(name = "phone", length = 12, nullable = false)
     private String phone;
 
+    /**
+     * User document type
+     */
     @OneToOne
     @JoinColumn(name = "doc_type_id")
     private DocType docType;
 
+    /**
+     * User document number
+     */
     @Column(name = "document_number", length = 20, nullable = false)
     private String documentNumber;
 
+    /**
+     * User document date
+     */
     @Temporal(TemporalType.DATE)
     @Column(name = "document_date", nullable = false)
     private Date documentDate;
 
+    /**
+     * User citizenship
+     */
     @OneToOne
     @JoinColumn(name = "country_id")
     private Country country;
 
+    /**
+     * Field to show active or inactive status of user
+     */
     @Column(name = "is_identified")
     private Boolean isIdentified;
 
+    /**
+     * Office in which the user is working in
+     */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "office_id")
     private Office office;
