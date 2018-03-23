@@ -9,6 +9,7 @@ import ru.bellintegrator.practice.organization.model.Organization;
 
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -30,13 +31,13 @@ public class OfficeDaoImpl implements OfficeDao {
     }
 
     @Override
-    public List<Office> list(Map<String, Object> filters) {
+    public List<Object[]> list(Map<String, Object> filters) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT o FROM Office o WHERE");
+        sb.append("SELECT o.id, o.name, o.isActive FROM Office o WHERE");
         filters.forEach((key, value) -> sb.append(String.format(" o.%s = '%s' AND", key, value)));
 
-        TypedQuery<Office> query = em.createQuery(sb.substring(0, sb.length() - 4), Office.class);
+        Query query = em.createQuery(sb.substring(0, sb.length() - 4));
 
         return query.getResultList();
     }

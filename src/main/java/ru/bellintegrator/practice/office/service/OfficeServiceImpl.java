@@ -34,9 +34,9 @@ public class OfficeServiceImpl implements OfficeService {
         List<OfficeListView> officeViews = new ArrayList<>();
         dao.list(filters).forEach(office -> {
             OfficeListView view = new OfficeListView();
-            view.setId(office.getId());
-            view.setName(office.getName());
-            view.setActive(office.getActive());
+            view.setId((Long) office[0]);
+            view.setName((String) office[1]);
+            view.setActive((Boolean) office[2]);
             log.debug(view.toString());
             officeViews.add(view);
         });

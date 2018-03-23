@@ -16,7 +16,7 @@ public interface OfficeDao {
      * @param filters - filters to find offices
      * @return offices founded by filters
      */
-    List<Office> list(Map<String, Object> filters);
+    List<Object[]> list(Map<String, Object> filters);
 
     /**
      * @param id - office primary key
