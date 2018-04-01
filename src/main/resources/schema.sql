@@ -59,9 +59,10 @@ CREATE TABLE IF NOT EXISTS user (
 CREATE TABLE IF NOT EXISTS account (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
     version INTEGER NOT NULL,
-    username VARCHAR(255) NOT NULL,
+    login VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    name VARCHAR(20) NOT NULL
+    name VARCHAR(20) NOT NULL,
+    code VARCHAR(255)
 );
 
 CREATE INDEX IX_Office_Organization_Id ON office (organization_id);

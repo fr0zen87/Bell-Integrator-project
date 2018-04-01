@@ -6,19 +6,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.core.task.TaskExecutor;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.i18n.SessionLocaleResolver;
-import ru.bellintegrator.practice.countries.controller.CountryControllerImpl;
-import ru.bellintegrator.practice.documents.controller.DocTypeControllerImpl;
-import ru.bellintegrator.practice.countries.service.CountryServiceImpl;
-import ru.bellintegrator.practice.documents.service.DocTypeServiceImpl;
-import ru.bellintegrator.practice.office.controller.OfficeControllerImpl;
-import ru.bellintegrator.practice.office.dao.OfficeDaoImpl;
-import ru.bellintegrator.practice.office.service.OfficeServiceImpl;
-import ru.bellintegrator.practice.organization.controller.OrganizationControllerImpl;
-import ru.bellintegrator.practice.organization.dao.OrganizationDaoImpl;
-import ru.bellintegrator.practice.organization.service.OrganizationServiceImpl;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -28,6 +20,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import java.util.Locale;
+import java.util.Properties;
 
 @EnableSwagger2
 @ImportResource("spring_mvc_config.xml")
@@ -38,6 +31,24 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(Application.class);
         app.run(args);
+    }
+
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("email");
+        mailSender.setPassword("password");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
     }
 
     @Bean

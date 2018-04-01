@@ -35,3 +35,7 @@ INSERT INTO User (version, first_name, second_name, middle_name, position, phone
 (0, 'firstName3', 'secondName3', 'middleName3', 'programmer', '33333', 5, '33 3333', '2018-03-01', 3, TRUE, 1),
 (0, 'firstName4', 'secondName4', 'middleName4', 'boss', '44444', 7, '44 4444', '2018-04-01', 4, FALSE, 2),
 (0, 'firstName5', 'secondName5', 'middleName5', 'economist', '55555', 9, '55 5555', '2018-05-01', 5, TRUE, 1);
+
+INSERT INTO Account (version, login, password, name) VALUES
+(0, 'admin@admin.com', 'adminpass', 'admin'),
+(0, 'test@test.com', 'testpass', 'test');
