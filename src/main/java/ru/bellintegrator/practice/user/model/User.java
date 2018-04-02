@@ -4,6 +4,7 @@ import ru.bellintegrator.practice.countries.model.Country;
 import ru.bellintegrator.practice.doctype.model.DocType;
 import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.user.views.requests.UserSaveRequest;
+import ru.bellintegrator.practice.user.views.requests.UserUpdateRequest;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -216,5 +217,18 @@ public class User {
 
     public void setCountry(Country country) {
         this.country = country;
+    }
+
+    public void update(UserUpdateRequest update, DocType docType, Country country) {
+        this.firstName = update.getFirstName();
+        this.secondName = update.getSecondName();
+        this.middleName = update.getMiddleName();
+        this.position = update.getPosition();
+        this.phone = update.getPhone();
+        this.docType = docType;
+        this.documentNumber = update.getDocNumber();
+        this.documentDate = update.getDocDate();
+        this.country = country;
+        this.isIdentified = update.getIdentified();
     }
 }

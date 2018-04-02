@@ -69,16 +69,7 @@ public class UserDaoImpl implements UserDao {
         DocType docType = findDocType(update.getDocName(), update.getDocCode());
         Country country = findCountry(update.getCitizenshipName(), update.getCitizenshipCode());
 
-        user.setFirstName(update.getFirstName());
-        user.setSecondName(update.getSecondName());
-        user.setMiddleName(update.getMiddleName());
-        user.setPosition(update.getPosition());
-        user.setPhone(update.getPhone());
-        user.setDocType(docType);
-        user.setDocumentNumber(update.getDocNumber());
-        user.setDocumentDate(update.getDocDate());
-        user.setCountry(country);
-        user.setIdentified(update.getIdentified());
+        user.update(update, docType, country);
         em.merge(user);
     }
 
