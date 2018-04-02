@@ -3,7 +3,7 @@ package ru.bellintegrator.practice.user.dao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import ru.bellintegrator.practice.countries.model.Country;
-import ru.bellintegrator.practice.documents.model.DocType;
+import ru.bellintegrator.practice.doctype.model.DocType;
 import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.user.model.User;
 import ru.bellintegrator.practice.user.views.requests.UserSaveRequest;

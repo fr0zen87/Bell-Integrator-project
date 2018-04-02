@@ -1,11 +1,11 @@
-package ru.bellintegrator.practice.documents.controller;
+package ru.bellintegrator.practice.doctype.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.bellintegrator.practice.documents.service.DocTypeService;
-import ru.bellintegrator.practice.documents.views.DocTypeView;
+import ru.bellintegrator.practice.doctype.service.DocTypeService;
+import ru.bellintegrator.practice.doctype.views.DocTypeView;
 
 import java.util.List;
 import java.util.Map;

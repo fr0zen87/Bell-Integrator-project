@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.documents.model;
+package ru.bellintegrator.practice.doctype.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

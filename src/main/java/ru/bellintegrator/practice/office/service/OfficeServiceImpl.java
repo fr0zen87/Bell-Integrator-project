@@ -33,10 +33,7 @@ public class OfficeServiceImpl implements OfficeService {
     public List<OfficeListView> list(Map<String, Object> filters) {
         List<OfficeListView> officeViews = new ArrayList<>();
         dao.list(filters).forEach(office -> {
-            OfficeListView view = new OfficeListView();
-            view.setId((Long) office[0]);
-            view.setName((String) office[1]);
-            view.setActive((Boolean) office[2]);
+            OfficeListView view = new OfficeListView(office);
             log.debug(view.toString());
             officeViews.add(view);
         });

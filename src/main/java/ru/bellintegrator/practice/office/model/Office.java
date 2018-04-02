@@ -1,6 +1,7 @@
 package ru.bellintegrator.practice.office.model;
 
 import ru.bellintegrator.practice.office.views.requests.OfficeSaveRequest;
+import ru.bellintegrator.practice.office.views.requests.OfficeUpdateRequest;
 import ru.bellintegrator.practice.user.model.User;
 import ru.bellintegrator.practice.organization.model.Organization;
 
@@ -146,5 +147,12 @@ public class Office {
     public void removeUser(User user) {
         getUsers().remove(user);
         user.setOffice(null);
+    }
+
+    public void update(OfficeUpdateRequest update) {
+        this.name = update.getName();
+        this.address = update.getAddress();
+        this.phone = update.getPhone();
+        this.isActive = update.getActive();
     }
 }

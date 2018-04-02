@@ -71,13 +71,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
             throw new NullPointerException(
                     String.format("Organization with id=%s not found", update.getId()));
         }
-        organization.setName(update.getName());
-        organization.setFullName(update.getFullName());
-        organization.setInn(update.getInn());
-        organization.setKpp(update.getKpp());
-        organization.setAddress(update.getAddress());
-        organization.setPhone(update.getPhone());
-        organization.setActive(update.getActive());
+        organization.update(update);
         em.merge(organization);
     }
 

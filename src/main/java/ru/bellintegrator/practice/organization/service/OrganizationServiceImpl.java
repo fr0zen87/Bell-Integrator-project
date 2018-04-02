@@ -38,10 +38,7 @@ public class OrganizationServiceImpl implements OrganizationService {
     public List<OrganizationListView> list(OrganizationFilter filter) {
         List<OrganizationListView> organizationViews = new ArrayList<>();
         dao.list(filter).forEach(organization -> {
-            OrganizationListView organizationView = new OrganizationListView();
-            organizationView.setId(organization.getId());
-            organizationView.setName(organization.getName());
-            organizationView.setActive(organization.isActive());
+            OrganizationListView organizationView = new OrganizationListView(organization);
             log.debug(organizationView.toString());
             organizationViews.add(organizationView);
         });

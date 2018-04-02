@@ -1,12 +1,12 @@
-package ru.bellintegrator.practice.documents.service;
+package ru.bellintegrator.practice.doctype.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.bellintegrator.practice.documents.dao.DocTypeDao;
-import ru.bellintegrator.practice.documents.views.DocTypeView;
+import ru.bellintegrator.practice.doctype.dao.DocTypeDao;
+import ru.bellintegrator.practice.doctype.views.DocTypeView;
 
 import java.util.ArrayList;
 import java.util.HashMap;

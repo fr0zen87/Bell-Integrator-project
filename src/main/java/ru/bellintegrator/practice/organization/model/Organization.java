@@ -2,6 +2,7 @@ package ru.bellintegrator.practice.organization.model;
 
 import ru.bellintegrator.practice.office.model.Office;
 import ru.bellintegrator.practice.organization.views.requests.OrganizationSaveRequest;
+import ru.bellintegrator.practice.organization.views.requests.OrganizationUpdateRequest;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -173,5 +174,15 @@ public class Organization {
     public void removeOffice(Office office) {
         getOffices().remove(office);
         office.setOrganization(null);
+    }
+
+    public void update(OrganizationUpdateRequest update) {
+        this.name = update.getName();
+        this.fullName = update.getFullName();
+        this.inn = update.getInn();
+        this.kpp = update.getKpp();
+        this.address = update.getAddress();
+        this.phone = update.getPhone();
+        this.isActive = update.getActive();
     }
 }

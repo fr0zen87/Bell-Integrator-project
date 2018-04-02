@@ -1,6 +1,6 @@
-package ru.bellintegrator.practice.documents.controller;
+package ru.bellintegrator.practice.doctype.controller;
 
-import ru.bellintegrator.practice.documents.views.DocTypeView;
+import ru.bellintegrator.practice.doctype.views.DocTypeView;
 
 import java.util.List;
 import java.util.Map;

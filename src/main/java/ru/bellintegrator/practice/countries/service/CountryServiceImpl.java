@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.bellintegrator.practice.countries.views.CountryView;
 import ru.bellintegrator.practice.countries.dao.CountryDao;
-import ru.bellintegrator.practice.documents.service.DocTypeServiceImpl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +19,7 @@ import java.util.Map;
 @Service
 public class CountryServiceImpl implements CountryService {
 
-    private final Logger log = LoggerFactory.getLogger(DocTypeServiceImpl.class);
+    private final Logger log = LoggerFactory.getLogger(CountryServiceImpl.class);
 
     private final CountryDao dao;
 

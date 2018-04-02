@@ -16,6 +16,15 @@ public class OfficeListView {
     @JsonProperty(value = "isActive")
     private Boolean isActive;
 
+    public OfficeListView() {
+    }
+
+    public OfficeListView(Object[] office) {
+        this.id = (Long) office[0];
+        this.name = (String) office[1];
+        this.isActive = (Boolean) office[2];
+    }
+
     public Long getId() {
         return id;
     }

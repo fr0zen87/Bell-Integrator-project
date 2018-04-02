@@ -1,4 +1,4 @@
-package ru.bellintegrator.practice.documents.views;
+package ru.bellintegrator.practice.doctype.views;
 
 /**
  * Class to view DocType

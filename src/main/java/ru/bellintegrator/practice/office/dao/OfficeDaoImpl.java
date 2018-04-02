@@ -59,10 +59,7 @@ public class OfficeDaoImpl implements OfficeDao {
             throw new NullPointerException(
                     String.format("Office with id=%s not found", update.getId()));
         }
-        office.setName(update.getName());
-        office.setAddress(update.getAddress());
-        office.setPhone(update.getPhone());
-        office.setActive(update.getActive());
+        office.update(update);
         em.merge(office);
     }
 
