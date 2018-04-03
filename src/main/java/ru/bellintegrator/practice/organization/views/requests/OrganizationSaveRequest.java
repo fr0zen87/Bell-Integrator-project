@@ -43,6 +43,19 @@ public class OrganizationSaveRequest {
     @JsonProperty(value = "isActive")
     private Boolean isActive;
 
+    public OrganizationSaveRequest() {
+    }
+
+    public OrganizationSaveRequest(String name, String fullName, String inn, String kpp, String address, String phone, Boolean isActive) {
+        this.name = name;
+        this.fullName = fullName;
+        this.inn = inn;
+        this.kpp = kpp;
+        this.address = address;
+        this.phone = phone;
+        this.isActive = isActive;
+    }
+
     public String getName() {
         return name;
     }

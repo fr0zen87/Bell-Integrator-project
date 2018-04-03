@@ -71,6 +71,10 @@ public class OfficeDaoImpl implements OfficeDao {
                     String.format("Office with id=%s not found", id));
         }
         office.getOrganization().removeOffice(office);
+        if (office.getUsers() != null) {
+            office.getUsers().forEach(user -> user.setOffice(null));
+            office.setUsers(null);
+        }
         em.remove(office);
     }
 

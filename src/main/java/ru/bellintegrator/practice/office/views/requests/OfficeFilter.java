@@ -43,4 +43,20 @@ public class OfficeFilter {
     Boolean getActive() {
         return isActive;
     }
+
+    public void setOrgId(Long orgId) {
+        this.orgId = orgId;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }

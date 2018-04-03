@@ -34,6 +34,17 @@ public class OfficeUpdateRequest {
     @JsonProperty(value = "isActive")
     private Boolean isActive;
 
+    public OfficeUpdateRequest() {
+    }
+
+    public OfficeUpdateRequest(Long id, String name, String address, String phone, Boolean isActive) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.isActive = isActive;
+    }
+
     public Long getId() {
         return id;
     }

@@ -12,6 +12,13 @@ public class OfficeDeleteRequest {
     @Min(value = 1, message = "id must be more than 0")
     private Long id;
 
+    public OfficeDeleteRequest(){
+    }
+
+    public OfficeDeleteRequest(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

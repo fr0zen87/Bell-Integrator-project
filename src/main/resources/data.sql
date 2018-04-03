@@ -21,9 +21,9 @@ INSERT INTO country (version, name, code) VALUES
 (0, 'Италия', '380');
 
 INSERT INTO Organization (version, name, full_name, inn, kpp, address, phone, is_active) VALUES
-(0, 'MTS org', 'MTS ogranization', '1234567890', '987654321', 'Russia, Moscow', '+79851231212', FALSE),
-(0, 'TestOrg', 'TestOrgFullName', '111', '555', 'Address', '+1111111', TRUE),
-(0, 'TestOrg', 'TestOrgFull', '111', '666', 'Add', '+2222222', TRUE);
+(0, 'MTS org', 'MTS organization', '1234567890', '987654321', 'Russia, Moscow', '+79851231212', FALSE),
+(0, 'TestOrg', 'TestOrgFullName', '1111111111', '555555555', 'Address', '+1111111', TRUE),
+(0, 'TestOrg', 'TestOrgFull', '2222222222', '666666666', 'Add', '+2222222', TRUE);
 
 INSERT INTO Office (version, name, address, phone, is_active, organization_id) VALUES
 (0, 'MTS office', 'Russia, Moscow, Random str.', '+75554443322', TRUE, 1),

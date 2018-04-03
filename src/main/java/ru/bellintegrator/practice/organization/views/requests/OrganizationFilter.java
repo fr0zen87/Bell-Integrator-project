@@ -35,4 +35,16 @@ public class OrganizationFilter {
     public Boolean getActive() {
         return isActive;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setInn(String inn) {
+        this.inn = inn;
+    }
+
+    public void setActive(Boolean active) {
+        isActive = active;
+    }
 }

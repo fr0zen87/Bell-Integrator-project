@@ -34,6 +34,17 @@ public class OfficeSaveRequest {
     @Min(value = 1, message = "orgId must be more than 0")
     private Long orgId;
 
+    public OfficeSaveRequest() {
+    }
+
+    public OfficeSaveRequest(String name, String address, String phone, Boolean isActive, Long orgId) {
+        this.name = name;
+        this.address = address;
+        this.phone = phone;
+        this.isActive = isActive;
+        this.orgId = orgId;
+    }
+
     public String getName() {
         return name;
     }
