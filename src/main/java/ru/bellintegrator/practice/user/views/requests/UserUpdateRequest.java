@@ -64,6 +64,27 @@ public class UserUpdateRequest {
     @JsonProperty(value = "isIdentified")
     private Boolean isIdentified;
 
+    public UserUpdateRequest() {
+    }
+
+    public UserUpdateRequest(Long id, String firstName, String secondName, String middleName, String position,
+                             String phone, String docCode, String docName, String docNumber, Date docDate,
+                             String citizenshipName, String citizenshipCode, Boolean isIdentified) {
+        this.id = id;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.middleName = middleName;
+        this.position = position;
+        this.phone = phone;
+        this.docCode = docCode;
+        this.docName = docName;
+        this.docNumber = docNumber;
+        this.docDate = docDate;
+        this.citizenshipName = citizenshipName;
+        this.citizenshipCode = citizenshipCode;
+        this.isIdentified = isIdentified;
+    }
+
     public Long getId() {
         return id;
     }

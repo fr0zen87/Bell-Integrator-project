@@ -71,6 +71,27 @@ public class UserSaveRequest {
     @Min(value = 1, message = "officeId must be more than 0")
     private Long officeId;
 
+    public UserSaveRequest() {
+    }
+
+    public UserSaveRequest(String firstName, String secondName, String middleName, String position, String phone,
+                           String docCode, String docName, String docNumber, Date docDate, String citizenshipName,
+                           String citizenshipCode, Boolean isIdentified, Long officeId) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.middleName = middleName;
+        this.position = position;
+        this.phone = phone;
+        this.docCode = docCode;
+        this.docName = docName;
+        this.docNumber = docNumber;
+        this.docDate = docDate;
+        this.citizenshipName = citizenshipName;
+        this.citizenshipCode = citizenshipCode;
+        this.isIdentified = isIdentified;
+        this.officeId = officeId;
+    }
+
     public String getFirstName() {
         return firstName;
     }

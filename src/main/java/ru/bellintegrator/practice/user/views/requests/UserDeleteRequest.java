@@ -12,6 +12,13 @@ public class UserDeleteRequest {
     @Min(value = 1, message = "id must be more than 0")
     private Long id;
 
+    public UserDeleteRequest() {
+    }
+
+    public UserDeleteRequest(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }

@@ -61,4 +61,32 @@ public class UserFilter {
     public String getDocCode() {
         return docCode;
     }
+
+    public void setOfficeId(Long officeId) {
+        this.officeId = officeId;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public void setCitizenshipCode(String citizenshipCode) {
+        this.citizenshipCode = citizenshipCode;
+    }
+
+    public void setDocCode(String docCode) {
+        this.docCode = docCode;
+    }
 }
